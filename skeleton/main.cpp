@@ -109,6 +109,9 @@ void cleanupPhysics(bool interactive)
 	gFoundation->release();
 
 	DeregisterRenderItem(renderAitem);
+	DeregisterRenderItem(xAxis);
+	DeregisterRenderItem(yAxis);
+	DeregisterRenderItem(zAxis);
 	}
 
 // Function called when a key is pressed
