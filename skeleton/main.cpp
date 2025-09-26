@@ -1,6 +1,7 @@
 #include <ctype.h>
 
 #include <PxPhysicsAPI.h>
+#include "Entities/Particles.h"
 
 #include <vector>
 
@@ -30,7 +31,6 @@ PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
-RenderItem* renderAitem = nullptr;
 RenderItem* xAxis = nullptr;
 RenderItem* yAxis = nullptr;
 RenderItem* zAxis = nullptr;
@@ -62,9 +62,7 @@ void initPhysics(bool interactive)
 	gScene = gPhysics->createScene(sceneDesc);
 
 	//objeto+++++++++++++++++++++++++++++++++++++++++++++++++++
-	physx::PxShape* shape = CreateShape(PxSphereGeometry(2.0f));
-	renderAitem = new RenderItem(shape,new PxTransform(0, 0, 0), Vector4(1, 1, 1, 1));
-	RegisterRenderItem(renderAitem);
+	Particle* p = new Particle(PxVec3(0.f), PxVec3(0.f));
 
 	physx::PxShape* xBall = CreateShape(PxSphereGeometry(2.0f));
 	xAxis = new RenderItem(xBall, new PxTransform(AXIS_LENGTH, 0, 0), Vector4(0, 1, 0, 1));
@@ -108,7 +106,6 @@ void cleanupPhysics(bool interactive)
 	
 	gFoundation->release();
 
-	DeregisterRenderItem(renderAitem);
 	DeregisterRenderItem(xAxis);
 	DeregisterRenderItem(yAxis);
 	DeregisterRenderItem(zAxis);

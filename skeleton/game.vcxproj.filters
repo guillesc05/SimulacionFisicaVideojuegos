@@ -11,6 +11,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="vector3d.cpp" />
+    <ClCompile Include="Entities\Particles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -23,6 +24,7 @@
     <ClInclude Include="RenderUtils.hpp" />
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="vector3d.h" />
+    <ClInclude Include="Entities\Particles.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
