@@ -36,6 +36,7 @@ RenderItem* yAxis = nullptr;
 RenderItem* zAxis = nullptr;
 
 const float AXIS_LENGTH = 25.f;
+Particle* p = nullptr;
 
 // Initialize physics engine
 void initPhysics(bool interactive)
@@ -62,7 +63,7 @@ void initPhysics(bool interactive)
 	gScene = gPhysics->createScene(sceneDesc);
 
 	//objeto+++++++++++++++++++++++++++++++++++++++++++++++++++
-	Particle* p = new Particle(PxVec3(0.f), PxVec3(0.f));
+	p = new Particle(PxVec3(0.f), PxVec3(0,0,10.f));
 
 	physx::PxShape* xBall = CreateShape(PxSphereGeometry(2.0f));
 	xAxis = new RenderItem(xBall, new PxTransform(AXIS_LENGTH, 0, 0), Vector4(0, 1, 0, 1));
@@ -86,6 +87,7 @@ void stepPhysics(bool interactive, double t)
 	PX_UNUSED(interactive);
 
 	gScene->simulate(t);
+	p->integrate(t);
 	gScene->fetchResults(true);
 }
 

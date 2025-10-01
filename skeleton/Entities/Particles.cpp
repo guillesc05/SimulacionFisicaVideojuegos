@@ -1,8 +1,9 @@
 #include "Particles.h"
 
-Particle::Particle(physx::PxVec3 p, physx::PxVec3 v):pos(p), vel(v) {
+Particle::Particle(physx::PxVec3 p, physx::PxVec3 v, physx::PxVec3 a):vel(v), accel(a) {
 	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(2.0f));
-	renderItem = new RenderItem(shape, new physx::PxTransform(0, 0, 0), Vector4(1, 1, 1, 1));
+	transform = new physx::PxTransform(p);
+	renderItem = new RenderItem(shape, transform, Vector4(1, 1, 1, 1));
 	RegisterRenderItem(renderItem);
 }
 
@@ -12,5 +13,6 @@ Particle::~Particle() {
 }
 
 void Particle::integrate(double t) {
-
+	vel += accel * t;
+	transform->p += vel * t;
 }
