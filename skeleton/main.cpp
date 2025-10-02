@@ -63,7 +63,7 @@ void initPhysics(bool interactive)
 	gScene = gPhysics->createScene(sceneDesc);
 
 	//objeto+++++++++++++++++++++++++++++++++++++++++++++++++++
-	p = new Particle(PxVec3(0.f), PxVec3(0,0,10.f));
+	p = new Particle(PxVec3(0.f), PxVec3(0,0,10.f), PxVec3(0, 10, 0), .9);
 
 	physx::PxShape* xBall = CreateShape(PxSphereGeometry(2.0f));
 	xAxis = new RenderItem(xBall, new PxTransform(AXIS_LENGTH, 0, 0), Vector4(0, 1, 0, 1));
