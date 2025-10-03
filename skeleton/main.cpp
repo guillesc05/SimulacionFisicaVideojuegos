@@ -82,6 +82,7 @@ void initPhysics(bool interactive)
 
 	//CREAR ESCENA
 	currentScene = new Scene1();
+	currentScene->start();
 }
 
 
