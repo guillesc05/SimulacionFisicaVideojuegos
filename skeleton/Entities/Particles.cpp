@@ -6,7 +6,6 @@ Particle::Particle(physx::PxVec3 p, physx::PxVec3 v, physx::PxVec3 a, float d):v
 	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(2.0f));
 	transform = new physx::PxTransform(p);
 	renderItem = new RenderItem(shape, transform, Vector4(1, 1, 1, 1));
-	RegisterRenderItem(renderItem);
 }
 
 Particle::~Particle() {

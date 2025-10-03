@@ -9,6 +9,9 @@
 #include "RenderUtils.hpp"
 #include "callbacks.hpp"
 
+#include "Scene.h"
+#include "Scenes/Scene1.h"
+
 #include <iostream>
 
 std::string display_text = "This is a test";
@@ -35,8 +38,9 @@ RenderItem* xAxis = nullptr;
 RenderItem* yAxis = nullptr;
 RenderItem* zAxis = nullptr;
 
+Scene* currentScene = nullptr;
+
 const float AXIS_LENGTH = 25.f;
-Particle* p = nullptr;
 
 // Initialize physics engine
 void initPhysics(bool interactive)
@@ -63,7 +67,6 @@ void initPhysics(bool interactive)
 	gScene = gPhysics->createScene(sceneDesc);
 
 	//objeto+++++++++++++++++++++++++++++++++++++++++++++++++++
-	p = new Particle(PxVec3(0.f), PxVec3(0,10.0f,0.f), PxVec3(0.0f, -9.8f, 0.0f), 0.8f);
 
 	physx::PxShape* xBall = CreateShape(PxSphereGeometry(2.0f));
 	xAxis = new RenderItem(xBall, new PxTransform(AXIS_LENGTH, 0, 0), Vector4(0, 1, 0, 1));
@@ -76,6 +79,9 @@ void initPhysics(bool interactive)
 	physx::PxShape* zBall = CreateShape(PxSphereGeometry(2.0f));
 	zAxis = new RenderItem(zBall, new PxTransform(0, 0, AXIS_LENGTH), Vector4(0, 0, 1, 1));
 	RegisterRenderItem(zAxis);
+
+	//CREAR ESCENA
+	currentScene = new Scene1();
 }
 
 
@@ -87,7 +93,7 @@ void stepPhysics(bool interactive, double t)
 	PX_UNUSED(interactive);
 
 	gScene->simulate(t);
-	p->integrate(t);
+	currentScene->integrate(t);
 	gScene->fetchResults(true);
 }
 
@@ -111,6 +117,7 @@ void cleanupPhysics(bool interactive)
 	DeregisterRenderItem(xAxis);
 	DeregisterRenderItem(yAxis);
 	DeregisterRenderItem(zAxis);
+	delete currentScene;
 	}
 
 // Function called when a key is pressed
