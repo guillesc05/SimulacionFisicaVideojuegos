@@ -1,4 +1,6 @@
 #include "Particles.h"
+#include <math.h>
+#include <stdio.h>
 
 Particle::Particle(physx::PxVec3 p, physx::PxVec3 v, physx::PxVec3 a, float d):vel(v), accel(a), damping(d) {
 	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(2.0f));
@@ -13,7 +15,7 @@ Particle::~Particle() {
 }
 
 void Particle::integrate(double t) {
-	vel -= vel* damping* t;
 	vel += accel * t;
-	transform->p += vel * t;
+	transform->p = transform->p + vel * t;
+	vel *= pow(damping, t);
 }
