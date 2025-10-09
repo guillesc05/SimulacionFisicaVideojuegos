@@ -1,14 +1,16 @@
 #pragma once
 #include <vector>
+#include <PxPhysicsAPI.h>
 
 class Particle;
 class Scene
 {
 public:
 	Scene();
-	void integrate(double t);
+	virtual void integrate(double t);
 
 	virtual void start();
+	virtual void keyPress(unsigned char key, const physx::PxTransform& camera){}
 	virtual ~Scene();
 protected:
 

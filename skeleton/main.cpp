@@ -125,6 +125,7 @@ void cleanupPhysics(bool interactive)
 void keyPress(unsigned char key, const PxTransform& camera)
 {
 	PX_UNUSED(camera);
+	currentScene->keyPress(key, camera);
 
 	switch(toupper(key))
 	{

@@ -11,7 +11,9 @@ private:
 	physx::PxVec3 vel;
 	physx::PxVec3 accel;
 
-	float damping;
+	float damping = 1;
+
+	int mass = 1;
 
 	RenderItem* renderItem;
 	physx::PxTransform* transform;
