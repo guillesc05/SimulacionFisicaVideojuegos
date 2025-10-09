@@ -9,22 +9,24 @@ Scene1::Scene1() : Scene() {
 }
 
 void Scene1::start() {
-	Particle* p = new Particle(PxVec3(0.f), PxVec3(0, 10.0f, 0.f),1.f, PxVec3(0.0f, -9.8f, 0.0f), 0.8f);
-	particles.push_back(p);
+
 }
 
 void Scene1::shootCannon(const physx::PxTransform& camera) {
-	Particle* p = new Particle(camera.p, camera.q.rotate(PxVec3(0.f, 0.f, -1.f * CANNON_BALL_SIMULATED_VELOCITY)), CANNON_BALL_SIMULATED_MASS, PxVec3(0.0f, -9.8f, 0.0f), 0.8f);
+	Particle* p = new Particle(camera.p, camera.q.rotate(PxVec3(0.f, 0.f, -10.f * CANNON_BALL_SIMULATED_VELOCITY)), CANNON_BALL_SIMULATED_MASS, PxVec3(0.0f, -9.8f, 0.0f), 1.f);
+	p->changeColor({ 1.f,1.f,0.f,1.f });
 	shoot(p);
 }
 
 void Scene1::shootTankBullet(const physx::PxTransform& camera) {
-	Particle* p = new Particle(camera.p, camera.q.rotate(PxVec3(0.f, 0.f, -1.f * TANK_BULLET_SIMULATED_VELOCITY)), TANK_BULLET_SIMULATED_MASS, PxVec3(0.0f, -9.8f, 0.0f), 0.8f);
+	Particle* p = new Particle(camera.p, camera.q.rotate(PxVec3(0.f, 0.f, -10.f * TANK_BULLET_SIMULATED_VELOCITY)), TANK_BULLET_SIMULATED_MASS, PxVec3(0.0f, -9.8f, 0.0f), 1.f);
+	p->changeColor({ 1.f,0.f,1.f,1.f });
 	shoot(p);
 }
 
 void Scene1::shootPistolBullet(const physx::PxTransform& camera) {
-	Particle* p = new Particle(camera.p, camera.q.rotate(PxVec3(0.f, 0.f, -1.f * PISTOL_BULLET_SIMULATED_VELOCITY)), PISTOL_BULLET_SIMULATED_MASS, PxVec3(0.0f, -9.8f, 0.0f), 0.8f);
+	Particle* p = new Particle(camera.p, camera.q.rotate(PxVec3(0.f, 0.f, -10.f * PISTOL_BULLET_SIMULATED_VELOCITY)), PISTOL_BULLET_SIMULATED_MASS, PxVec3(0.0f, -9.8f, 0.0f), 1.f);
+	p->changeColor({ 0.f,1.f,1.f,1.f });
 	shoot(p);
 }
 

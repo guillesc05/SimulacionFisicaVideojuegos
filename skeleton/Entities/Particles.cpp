@@ -18,3 +18,7 @@ void Particle::integrate(double t) {
 	transform->p = transform->p + vel * t;
 	vel *= pow(damping, t);
 }
+
+void Particle::changeColor(physx::PxVec4 color) {
+	renderItem->color = color;
+}
