@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 
-Particle::Particle(physx::PxVec3 p, physx::PxVec3 v, physx::PxVec3 a, float d):vel(v), accel(a), damping(d) {
+Particle::Particle(physx::PxVec3 p, physx::PxVec3 v,float m, physx::PxVec3 a, float d):vel(v), accel(a), damping(d), mass(m) {
 	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(2.0f));
 	transform = new physx::PxTransform(p);
 	renderItem = new RenderItem(shape, transform, Vector4(1, 1, 1, 1));

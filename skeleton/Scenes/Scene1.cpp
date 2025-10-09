@@ -9,15 +9,31 @@ Scene1::Scene1() : Scene() {
 }
 
 void Scene1::start() {
-	Particle* p = new Particle(PxVec3(0.f), PxVec3(0, 10.0f, 0.f), PxVec3(0.0f, -9.8f, 0.0f), 0.8f);
+	Particle* p = new Particle(PxVec3(0.f), PxVec3(0, 10.0f, 0.f),1.f, PxVec3(0.0f, -9.8f, 0.0f), 0.8f);
 	particles.push_back(p);
 }
 
-void Scene1::shoot(const physx::PxTransform& camera) {
+void Scene1::shootCannon(const physx::PxTransform& camera) {
+	Particle* p = new Particle(camera.p, camera.q.rotate(PxVec3(0.f, 0.f, -1.f * CANNON_BALL_SIMULATED_VELOCITY)), CANNON_BALL_SIMULATED_MASS, PxVec3(0.0f, -9.8f, 0.0f), 0.8f);
+	shoot(p);
+}
+
+void Scene1::shootTankBullet(const physx::PxTransform& camera) {
+	Particle* p = new Particle(camera.p, camera.q.rotate(PxVec3(0.f, 0.f, -1.f * TANK_BULLET_SIMULATED_VELOCITY)), TANK_BULLET_SIMULATED_MASS, PxVec3(0.0f, -9.8f, 0.0f), 0.8f);
+	shoot(p);
+}
+
+void Scene1::shootPistolBullet(const physx::PxTransform& camera) {
+	Particle* p = new Particle(camera.p, camera.q.rotate(PxVec3(0.f, 0.f, -1.f * PISTOL_BULLET_SIMULATED_VELOCITY)), PISTOL_BULLET_SIMULATED_MASS, PxVec3(0.0f, -9.8f, 0.0f), 0.8f);
+	shoot(p);
+}
+
+void Scene1::shoot(Particle* p) {
 	if (bullets[bullet_index] != nullptr) delete bullets[bullet_index];
-	bullets[bullet_index] = new Particle(camera.p,camera.q.rotate(PxVec3(0.f, 0.f, -100.f)), PxVec3(0.0f, -9.8f, 0.0f), 0.8f);
+	bullets[bullet_index] = p;
 	bullet_index++;
 	if (bullet_index == MAX_BULLETS) bullet_index = 0;
+	
 }
 
 void Scene1::integrate(double t) {
@@ -29,8 +45,14 @@ void Scene1::integrate(double t) {
 
 void Scene1::keyPress(unsigned char key, const PxTransform& camera) {
 	switch (key) {
+	case 'q':
+		shootCannon(camera);
+		break;
 	case 'e':
-		shoot(camera);
+		shootTankBullet(camera);
+		break;
+	case 'r':
+		shootPistolBullet(camera);
 		break;
 	default:
 		break;
