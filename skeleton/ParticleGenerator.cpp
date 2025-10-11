@@ -5,5 +5,25 @@ ParticleGenerator::ParticleGenerator(physx::PxVec3 p, physx::PxVec3 r, float d):
 	
 }
 
-Particle* ParticleGenerator::generateNewParticle() {
+ParticleWithDuration ParticleGenerator::generateNewParticle() {
+	Particle* p = new Particle(getNewParticlePosition(), getNewParticleRotation().getNormalized() * getNewParticleVelocityModule());
+	return { p, getNewParticleDuration() };
 }
+
+double ParticleGenerator::getNewParticleDuration() {
+	return _baseDuration;
+}
+
+physx::PxVec3 ParticleGenerator::getNewParticlePosition() {
+	return _basePosition;
+}
+
+physx::PxVec3 ParticleGenerator::getNewParticleRotation() {
+	return _baseRotation;
+}
+
+double ParticleGenerator::getNewParticleVelocityModule() {
+	return _baseVelocity;
+}
+
+
