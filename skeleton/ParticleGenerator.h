@@ -21,12 +21,12 @@ public:
 
 protected:
 	physx::PxVec3 _basePosition;
-	physx::PxVec3 _baseRotation;
+	physx::PxVec3 _baseDirection;
 	double _baseDuration;
 	double _baseVelocity;
 
 	virtual physx::PxVec3 getNewParticlePosition();
-	virtual physx::PxVec3 getNewParticleRotation();
+	virtual physx::PxVec3 getNewParticleDirection();
 	virtual double getNewParticleDuration();
 	virtual double getNewParticleVelocityModule();
 };

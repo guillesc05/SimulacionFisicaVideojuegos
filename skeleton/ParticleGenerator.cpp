@@ -1,12 +1,12 @@
 #include "ParticleGenerator.h"
 #include "Entities/Particles.h"
 
-ParticleGenerator::ParticleGenerator(physx::PxVec3 p, physx::PxVec3 r, double d, double v):_basePosition(p), _baseRotation(r), _baseDuration(d), _baseVelocity(v) {
+ParticleGenerator::ParticleGenerator(physx::PxVec3 p, physx::PxVec3 r, double d, double v):_basePosition(p), _baseDirection(r), _baseDuration(d), _baseVelocity(v) {
 	
 }
 
 ParticleWithDuration ParticleGenerator::generateNewParticle() {
-	Particle* p = new Particle(getNewParticlePosition(), getNewParticleRotation().getNormalized() * getNewParticleVelocityModule());
+	Particle* p = new Particle(getNewParticlePosition(), getNewParticleDirection().getNormalized() * getNewParticleVelocityModule(), 1.0, physx::PxVec3(0, -100, 0));
 	return { p, getNewParticleDuration() };
 }
 
@@ -18,8 +18,8 @@ physx::PxVec3 ParticleGenerator::getNewParticlePosition() {
 	return _basePosition;
 }
 
-physx::PxVec3 ParticleGenerator::getNewParticleRotation() {
-	return _baseRotation;
+physx::PxVec3 ParticleGenerator::getNewParticleDirection() {
+	return _baseDirection;
 }
 
 double ParticleGenerator::getNewParticleVelocityModule() {
