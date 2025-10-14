@@ -6,7 +6,7 @@ ParticleGenerator::ParticleGenerator(physx::PxVec3 p, physx::PxVec3 r, double d,
 }
 
 ParticleWithDuration ParticleGenerator::generateNewParticle() {
-	Particle* p = new Particle(getNewParticlePosition(), getNewParticleDirection().getNormalized() * getNewParticleVelocityModule(), 1.0, physx::PxVec3(0, -100, 0));
+	Particle* p = new Particle(getNewParticlePosition(), getNewParticleDirection().getNormalized() * getNewParticleVelocityModule(), 1.0, physx::PxVec3(0, -10, 0));
 	return { p, getNewParticleDuration() };
 }
 
