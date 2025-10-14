@@ -7,7 +7,7 @@ GaussianParticleGenerator::GaussianParticleGenerator(physx::PxVec3 p, physx::PxV
 }
 
 physx::PxVec3 GaussianParticleGenerator::getNewParticlePosition() {
-	return _basePosition + _positionVariation* physx::PxVec3(_normalDistribution(_mt), _normalDistribution(_mt), _normalDistribution(_mt)).getNormalized();
+	return _basePosition + _positionVariation* physx::PxVec3(_normalDistribution(_mt), _normalDistribution(_mt), _normalDistribution(_mt));
 }
 
 physx::PxVec3 GaussianParticleGenerator::getNewParticleDirection() {
