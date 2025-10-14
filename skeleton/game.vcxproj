@@ -257,6 +257,7 @@
     <ClCompile Include="Entities\Particles.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ParticleGenerator.cpp" />
+    <ClCompile Include="ParticleGenerators\GaussianParticleGenerator.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="RenderUtils.cpp" />
     <ClCompile Include="Render\Camera.cpp" />
@@ -271,6 +272,7 @@
     <ClInclude Include="core.hpp" />
     <ClInclude Include="Entities\Particles.h" />
     <ClInclude Include="ParticleGenerator.h" />
+    <ClInclude Include="ParticleGenerators\GaussianParticleGenerator.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="RenderUtils.hpp" />
     <ClInclude Include="Render\Camera.h" />
