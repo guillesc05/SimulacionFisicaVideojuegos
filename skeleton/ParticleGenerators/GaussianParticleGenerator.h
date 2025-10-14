@@ -13,7 +13,7 @@ public:
 	virtual double getNewParticleVelocityModule() override;
 
 private:
-	std::normal_distribution<double> _normalDistribution{ -1,1 };
+	std::normal_distribution<double> _normalDistribution{ 0,1 };
 	std::mt19937 _mt;
 
 	double _positionVariation;
