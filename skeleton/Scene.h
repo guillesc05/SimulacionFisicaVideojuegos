@@ -3,6 +3,7 @@
 #include <PxPhysicsAPI.h>
 
 class Particle;
+class ParticleSystem;
 class Scene
 {
 public:
@@ -15,5 +16,6 @@ public:
 protected:
 
 	std::vector<Particle*> particles;
+	std::vector<ParticleSystem*> systems;
 };
 

@@ -11,6 +11,7 @@
 
 #include "Scene.h"
 #include "Scenes/Scene1.h"
+#include "Scenes/Scene2.h"
 
 #include <iostream>
 
@@ -81,7 +82,7 @@ void initPhysics(bool interactive)
 	RegisterRenderItem(zAxis);
 
 	//CREAR ESCENA
-	currentScene = new Scene1();
+	currentScene = new Scene2();
 	currentScene->start();
 }
 

@@ -6,12 +6,16 @@ class Particle;
 struct ParticleWithDuration {
 	Particle* particle;
 	double deadTime;
+
+	bool operator==(const ParticleWithDuration& r)const& {
+		return particle == r.particle;
+	}
 };
 
 class ParticleGenerator
 {
 public:
-	ParticleGenerator(physx::PxVec3 position, physx::PxVec3 rotation, float duration);
+	ParticleGenerator(physx::PxVec3 position, physx::PxVec3 rotation, double duration, double velocityModule);
 
 	ParticleWithDuration generateNewParticle();
 
