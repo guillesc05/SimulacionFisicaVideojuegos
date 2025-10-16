@@ -22,3 +22,7 @@ void Particle::integrate(double t) {
 void Particle::changeColor(physx::PxVec4 color) {
 	renderItem->color = color;
 }
+
+physx::PxVec3 Particle::getPosition() {
+	return transform->p;
+}

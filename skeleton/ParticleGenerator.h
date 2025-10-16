@@ -3,11 +3,11 @@
 #include <random>
 class Particle;
 
-struct ParticleWithDuration {
+struct ParticleWithAttributes {
 	Particle* particle;
 	double deadTime;
-
-	bool operator==(const ParticleWithDuration& r)const& {
+	physx::PxVec3 initialPosition;
+	bool operator==(const ParticleWithAttributes& r)const& {
 		return particle == r.particle;
 	}
 };
@@ -17,7 +17,7 @@ class ParticleGenerator
 public:
 	ParticleGenerator(physx::PxVec3 position, physx::PxVec3 rotation, double duration, double velocityModule);
 
-	ParticleWithDuration generateNewParticle();
+	ParticleWithAttributes generateNewParticle();
 
 protected:
 	physx::PxVec3 _basePosition;

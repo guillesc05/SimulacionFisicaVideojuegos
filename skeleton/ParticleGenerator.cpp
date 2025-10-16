@@ -5,10 +5,11 @@ ParticleGenerator::ParticleGenerator(physx::PxVec3 p, physx::PxVec3 r, double d,
 	
 }
 
-ParticleWithDuration ParticleGenerator::generateNewParticle() {
-	Particle* p = new Particle(getNewParticlePosition(), getNewParticleDirection().getNormalized() * getNewParticleVelocityModule(), 1.0, physx::PxVec3(0, -10, 0));
+ParticleWithAttributes ParticleGenerator::generateNewParticle() {
+	auto pos = getNewParticlePosition();
+	Particle* p = new Particle(pos, getNewParticleDirection().getNormalized() * getNewParticleVelocityModule(), 1.0, physx::PxVec3(0, -10, 0));
 	p->changeColor(physx::PxVec4(0, 0, 1, 1));
-	return { p, getNewParticleDuration() };
+	return { p, getNewParticleDuration(), pos };
 }
 
 double ParticleGenerator::getNewParticleDuration() {

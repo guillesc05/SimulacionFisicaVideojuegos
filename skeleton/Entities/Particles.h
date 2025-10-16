@@ -9,6 +9,8 @@ public:
 	void changeColor(physx::PxVec4 color);
 
 	void integrate(double t);
+
+	physx::PxVec3 getPosition();
 private:
 	physx::PxVec3 vel;
 	physx::PxVec3 accel;
