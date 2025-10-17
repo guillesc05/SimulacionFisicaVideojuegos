@@ -8,7 +8,7 @@ class ParticleSystem
 	std::list<ParticleGenerator*> _generators;
 
 	int _particles_per_tick=0;
-	const double MAX_PARTICLE_DISTANCE = 200;
+	const double MAX_PARTICLE_DISTANCE = 500;
 public:
 	void update(double t);
 	void addGenerator(ParticleGenerator* gen);

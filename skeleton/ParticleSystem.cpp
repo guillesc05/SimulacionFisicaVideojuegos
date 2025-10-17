@@ -10,20 +10,16 @@ void ParticleSystem::addGenerator(ParticleGenerator* gen) {
 }
 
 void ParticleSystem::update(double t) {
-	std::list<ParticleWithAttributes> toErase;
-	for (ParticleWithAttributes& p : _particles) {
-		p.particle->integrate(t);
-		p.deadTime -= t;
+	for (auto it = _particles.begin(); it != _particles.end();) {
+		(*it).particle->integrate(t);
+		(*it).deadTime -= t;
 
-		if (p.deadTime <= 0 || (p.initialPosition - p.particle->getPosition()).magnitude() > MAX_PARTICLE_DISTANCE) {
-			toErase.push_back(p);
+		if ((*it).deadTime <= 0 || ((*it).initialPosition - (*it).particle->getPosition()).magnitude() > MAX_PARTICLE_DISTANCE) {
+			delete (*it).particle;
+			it = _particles.erase(it);
 		}
+		else it++;
 	}
-	for (auto& p : toErase) {
-		_particles.remove(p);
-		delete p.particle;
-	}
-
 
 	for (auto gen : _generators) {
 		for(int i =0; i < _particles_per_tick/_generators.size(); i++)
