@@ -33,3 +33,7 @@ void Particle::changeColor(physx::PxVec4 color) {
 physx::PxVec3 Particle::getPosition() {
 	return transform->p;
 }
+
+float Particle::getMass() {
+	return mass;
+}
