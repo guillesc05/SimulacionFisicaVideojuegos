@@ -254,7 +254,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="callbacks.cpp" />
+    <ClCompile Include="DirectionalForceGenerator.cpp" />
     <ClCompile Include="Entities\Particles.cpp" />
+    <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ParticleGenerator.cpp" />
     <ClCompile Include="ParticleGenerators\GaussianParticleGenerator.cpp" />
@@ -271,7 +273,9 @@
   <ItemGroup>
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="core.hpp" />
+    <ClInclude Include="DirectionalForceGenerator.h" />
     <ClInclude Include="Entities\Particles.h" />
+    <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="ParticleGenerator.h" />
     <ClInclude Include="ParticleGenerators\GaussianParticleGenerator.h" />
     <ClInclude Include="ParticleGenerators\UniformParticleGenerator.h" />

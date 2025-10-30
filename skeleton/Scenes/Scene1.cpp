@@ -14,9 +14,8 @@ void Scene1::start() {
 
 void Scene1::shootCannon(const physx::PxTransform& camera) {
 	PxVec3 velocity = camera.q.rotate(PxVec3(0.f, 0.f, -CANNON_BALL_SIMULATED_VELOCITY));
-	PxVec3 gravity = PxVec3(0.0f, REAL_GRAVITY * (CANNON_BALL_REAL_MASS/CANNON_BALL_SIMULATED_MASS), 0.0f);
 
-	Particle* p = new Particle(camera.p, velocity, CANNON_BALL_SIMULATED_MASS, gravity, 1.f);
+	Particle* p = new Particle(camera.p, velocity, CANNON_BALL_SIMULATED_MASS, 1.f);
 	p->changeColor({ 1.f,1.f,0.f,1.f });
 
 	shoot(p);
@@ -24,9 +23,8 @@ void Scene1::shootCannon(const physx::PxTransform& camera) {
 
 void Scene1::shootTankBullet(const physx::PxTransform& camera) {
 	PxVec3 velocity = camera.q.rotate(PxVec3(0.f, 0.f, -TANK_BULLET_SIMULATED_VELOCITY));
-	PxVec3 gravity = PxVec3(0.0f, REAL_GRAVITY * (TANK_BULLET_REAL_MASS / TANK_BULLET_SIMULATED_MASS), 0.0f);
 
-	Particle* p = new Particle(camera.p, velocity, TANK_BULLET_SIMULATED_MASS, gravity, 1.f);
+	Particle* p = new Particle(camera.p, velocity, TANK_BULLET_SIMULATED_MASS, 1.f);
 	p->changeColor({ 1.f,0.f,1.f,1.f });
 
 	shoot(p);
@@ -34,9 +32,8 @@ void Scene1::shootTankBullet(const physx::PxTransform& camera) {
 
 void Scene1::shootPistolBullet(const physx::PxTransform& camera) {
 	PxVec3 velocity = camera.q.rotate(PxVec3(0.f, 0.f, -PISTOL_BULLET_SIMULATED_VELOCITY));
-	PxVec3 gravity = PxVec3(0.0f, REAL_GRAVITY * (PISTOL_BULLET_REAL_MASS / PISTOL_BULLET_SIMULATED_MASS), 0.0f);
 
-	Particle* p = new Particle(camera.p, velocity, PISTOL_BULLET_SIMULATED_MASS, gravity, 1.f);
+	Particle* p = new Particle(camera.p, velocity, PISTOL_BULLET_SIMULATED_MASS, 1.f);
 	p->changeColor({ 0.f,1.f,1.f,1.f });
 
 	shoot(p);

@@ -2,10 +2,11 @@
 #include <math.h>
 #include <stdio.h>
 
-Particle::Particle(physx::PxVec3 p, physx::PxVec3 v,float m, physx::PxVec3 a, float d):vel(v), accel(a), damping(d), mass(m) {
+Particle::Particle(physx::PxVec3 p, physx::PxVec3 v,float m,  float d):vel(v),  damping(d), mass(m), inverseMass(pow(m,-1)) {
 	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(2.0f));
 	transform = new physx::PxTransform(p);
 	renderItem = new RenderItem(shape, transform, Vector4(1, 1, 1, 1));
+	forceVector = physx::PxVec3(0);
 }
 
 Particle::~Particle() {
@@ -13,7 +14,13 @@ Particle::~Particle() {
 	delete renderItem;
 }
 
+void Particle::addForce(physx::PxVec3 forceToAdd) {
+	forceVector += forceToAdd;
+}
+
 void Particle::integrate(double t) {
+	physx::PxVec3 accel = forceVector * inverseMass;
+	forceVector = physx::PxVec3(0.f,0.f,0.f);
 	vel += accel * t;
 	transform->p = transform->p + vel * t;
 	vel *= pow(damping, t);

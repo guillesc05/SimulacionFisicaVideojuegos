@@ -19,6 +19,8 @@
     <ClCompile Include="Scenes\Scene2.cpp" />
     <ClCompile Include="ParticleGenerators\GaussianParticleGenerator.cpp" />
     <ClCompile Include="ParticleGenerators\UniformParticleGenerator.cpp" />
+    <ClCompile Include="ForceGenerator.cpp" />
+    <ClCompile Include="DirectionalForceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -39,6 +41,8 @@
     <ClInclude Include="Scenes\Scene2.h" />
     <ClInclude Include="ParticleGenerators\GaussianParticleGenerator.h" />
     <ClInclude Include="ParticleGenerators\UniformParticleGenerator.h" />
+    <ClInclude Include="ForceGenerator.h" />
+    <ClInclude Include="DirectionalForceGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
