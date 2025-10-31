@@ -3,8 +3,8 @@
 class Particle;
 class ForceGenerator
 {
-	ForceGenerator(double forceMultiplier);
 public:
+	ForceGenerator(double forceMultiplier);
 	virtual void applyForce(Particle* p) =0;
 protected:
 

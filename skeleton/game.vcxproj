@@ -257,6 +257,7 @@
     <ClCompile Include="DirectionalForceGenerator.cpp" />
     <ClCompile Include="Entities\Particles.cpp" />
     <ClCompile Include="ForceGenerator.cpp" />
+    <ClCompile Include="GravitationalForceGenerator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ParticleGenerator.cpp" />
     <ClCompile Include="ParticleGenerators\GaussianParticleGenerator.cpp" />
@@ -276,6 +277,7 @@
     <ClInclude Include="DirectionalForceGenerator.h" />
     <ClInclude Include="Entities\Particles.h" />
     <ClInclude Include="ForceGenerator.h" />
+    <ClInclude Include="GravitationalForceGenerator.h" />
     <ClInclude Include="ParticleGenerator.h" />
     <ClInclude Include="ParticleGenerators\GaussianParticleGenerator.h" />
     <ClInclude Include="ParticleGenerators\UniformParticleGenerator.h" />
