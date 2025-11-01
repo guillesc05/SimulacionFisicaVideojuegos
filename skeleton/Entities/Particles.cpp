@@ -34,6 +34,10 @@ physx::PxVec3 Particle::getPosition() {
 	return transform->p;
 }
 
+physx::PxVec3 Particle::getVelocity() {
+	return vel;
+}
+
 float Particle::getMass() {
 	return mass;
 }

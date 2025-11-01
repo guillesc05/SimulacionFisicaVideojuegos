@@ -3,6 +3,7 @@
 #include "../ParticleGenerators/UniformParticleGenerator.h"
 #include "../ParticleGenerators/GaussianParticleGenerator.h"
 #include "../GravitationalForceGenerator.h"
+#include "../WindForceGenerator.h"
 
 void Scene2::start() {
 	auto particleSystem = new ParticleSystem(6);
@@ -13,4 +14,5 @@ void Scene2::start() {
 	particleSystem->addParticleGenerator(new GaussianParticleGenerator(physx::PxVec3(-100, 0, 0), physx::PxVec3(0), 5, 5, 50, 1, .1, 3));
 
 	particleSystem->addForceGenerator(new GravitationalForceGenerator(physx::PxVec3(0.f, -9.8f, 0.f), 1.));
+	particleSystem->addForceGenerator(new WindForceGenerator(physx::PxVec3(1.f, 0.f, 0.f), 100, 1, 0));
 }

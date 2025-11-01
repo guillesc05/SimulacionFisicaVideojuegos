@@ -12,6 +12,7 @@ public:
 	void addForce(physx::PxVec3 force);
 
 	physx::PxVec3 getPosition();
+	physx::PxVec3 getVelocity();
 
 	float getMass();
 private:
