@@ -6,10 +6,14 @@ WindForceGenerator::WindForceGenerator(physx::PxVec3 direction, double magnitude
 
 }
 
+physx::PxVec3 WindForceGenerator::getWindVelocity(Particle* p) {
+	return _direction * _forceMultiplier;
+}
+
 void WindForceGenerator::applyForce(Particle* p) {
 	if ((p->getPosition() - _position).magnitude() > _radius) return;
 
-	const physx::PxVec3 velocityDifference = _direction * _forceMultiplier - p->getVelocity();
+	const physx::PxVec3 velocityDifference = getWindVelocity(p) - p->getVelocity();
 	const physx::PxVec3 windForce = _k1 * (velocityDifference) + _k2 * velocityDifference.magnitude() * velocityDifference;
 	p->addForce(windForce);
 }

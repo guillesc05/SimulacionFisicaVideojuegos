@@ -23,6 +23,7 @@
     <ClCompile Include="DirectionalForceGenerator.cpp" />
     <ClCompile Include="GravitationalForceGenerator.cpp" />
     <ClCompile Include="WindForceGenerator.cpp" />
+    <ClCompile Include="WhirlwindForceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="DirectionalForceGenerator.h" />
     <ClInclude Include="GravitationalForceGenerator.h" />
     <ClInclude Include="WindForceGenerator.h" />
+    <ClInclude Include="WhirlwindForceGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

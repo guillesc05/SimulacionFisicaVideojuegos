@@ -5,7 +5,9 @@ class WindForceGenerator: public DirectionalForceGenerator
 public:
 	WindForceGenerator(physx::PxVec3 direction, double magnitude, double k1, double k2, physx::PxVec3 position, double radius);
 	void applyForce(Particle* p) override;
-private:
+
+protected:
+	virtual physx::PxVec3 getWindVelocity(Particle* p);
 	double _k1, _k2;
 	physx::PxVec3 _position;
 	double _radius;
