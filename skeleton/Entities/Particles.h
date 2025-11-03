@@ -16,7 +16,7 @@ public:
 	physx::PxVec3 getVelocity();
 
 	float getMass();
-private:
+protected:
 	physx::PxVec3 vel;
 
 	float damping = 1;
