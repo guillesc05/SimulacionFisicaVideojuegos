@@ -1,18 +1,13 @@
 #include "Scene.h"
-#include "Entities/Particles.h"
-#include "ParticleSystem.h"
+#include "UpdateableObject.h"
 
 Scene::Scene() {
 
 }
 
 void Scene::integrate(double t) {
-	for (auto particle : particles) {
-		particle->integrate(t);
-	}
-
-	for (auto system : systems) {
-		system->update(t);
+	for (auto uO : updateableObjects) {
+		uO->integrate(t);
 	}
 }
 
@@ -21,7 +16,7 @@ void Scene::start() {
 }
 
 Scene::~Scene() {
-	for (auto particle : particles) {
-		delete particle;
+	for (auto uO : updateableObjects) {
+		delete uO;
 	}
 }

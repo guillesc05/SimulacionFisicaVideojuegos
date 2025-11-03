@@ -256,6 +256,7 @@
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="DirectionalForceGenerator.cpp" />
     <ClCompile Include="Entities\Particles.cpp" />
+    <ClCompile Include="ExplosionForceGenerator.cpp" />
     <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="GravitationalForceGenerator.cpp" />
     <ClCompile Include="main.cpp" />
@@ -278,6 +279,7 @@
     <ClInclude Include="core.hpp" />
     <ClInclude Include="DirectionalForceGenerator.h" />
     <ClInclude Include="Entities\Particles.h" />
+    <ClInclude Include="ExplosionForceGenerator.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="GravitationalForceGenerator.h" />
     <ClInclude Include="ParticleGenerator.h" />
@@ -290,6 +292,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scenes\Scene1.h" />
     <ClInclude Include="Scenes\Scene2.h" />
+    <ClInclude Include="UpdateableObject.h" />
     <ClInclude Include="vector3d.h" />
     <ClInclude Include="WhirlwindForceGenerator.h" />
     <ClInclude Include="WindForceGenerator.h" />

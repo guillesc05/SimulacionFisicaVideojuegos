@@ -1,9 +1,10 @@
 #pragma once
 #include <list>
 #include "ParticleGenerator.h"
+#include "UpdateableObject.h"
 class Particle;
 class ForceGenerator;
-class ParticleSystem
+class ParticleSystem: public UpdateableObject
 {
 	std::list<ParticleWithAttributes> _particles;
 	std::list<ParticleGenerator*> _particleGenerators;
@@ -12,8 +13,9 @@ class ParticleSystem
 	int _particles_per_tick=0;
 	const double MAX_PARTICLE_DISTANCE = 500;
 public:
-	void update(double t);
+	void integrate(double t) override;
 	void addParticleGenerator(ParticleGenerator* gen);
 	void addForceGenerator(ForceGenerator* gen);
 	ParticleSystem(int particlesPerTick);
+	~ParticleSystem();
 };

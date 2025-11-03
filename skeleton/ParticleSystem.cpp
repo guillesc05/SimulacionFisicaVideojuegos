@@ -6,6 +6,16 @@ ParticleSystem::ParticleSystem(int p): _particles_per_tick(p) {
 
 }
 
+ParticleSystem::~ParticleSystem() {
+	for (auto particles : _particles) {
+		delete particles.particle;
+	}
+
+	for (auto pGen : _particleGenerators) {
+		delete pGen;
+	}
+}
+
 void ParticleSystem::addParticleGenerator(ParticleGenerator* gen) {
 	_particleGenerators.push_back(gen);
 }
@@ -14,7 +24,7 @@ void ParticleSystem::addForceGenerator(ForceGenerator* gen) {
 	_forceGenerators.push_back(gen);
 }
 
-void ParticleSystem::update(double t) {
+void ParticleSystem::integrate(double t) {
 	for (auto it = _particles.begin(); it != _particles.end();) {
 		(*it).particle->integrate(t);
 		(*it).deadTime -= t;

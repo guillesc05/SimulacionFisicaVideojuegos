@@ -1,14 +1,15 @@
 #pragma once
 #include <PxPhysicsAPI.h>
 #include "../RenderUtils.hpp"
-class Particle {
+#include "../UpdateableObject.h"
+class Particle: public UpdateableObject {
 public:
 	Particle(physx::PxVec3 pos = physx::PxVec3(0), physx::PxVec3 vel = physx::PxVec3(0),float mass = 1 , float damp = 1);
 	~Particle();
 
 	void changeColor(physx::PxVec4 color);
 
-	void integrate(double t);
+	void integrate(double t) override;
 	void addForce(physx::PxVec3 force);
 
 	physx::PxVec3 getPosition();
