@@ -28,4 +28,35 @@ double ParticleGenerator::getNewParticleVelocityModule() {
 	return _baseVelocity;
 }
 
+physx::PxVec3 ParticleGenerator::getBasePosition() {
+	return _basePosition;
+}
+
+physx::PxVec3 ParticleGenerator::getBaseDirection() {
+	return _baseDirection;
+}
+
+double ParticleGenerator::getBaseDuration() {
+	return _baseDuration;
+}
+
+double ParticleGenerator::getBaseVelocity() {
+	return _baseVelocity;
+}
+
+void ParticleGenerator::setBasePosition(physx::PxVec3 v) {
+	_basePosition = v;
+}
+
+void ParticleGenerator::setBaseDirection(physx::PxVec3 v) {
+	_baseDirection = v;
+}
+
+void ParticleGenerator::setBaseDuration(double d) {
+	_baseDuration = d;
+}
+void ParticleGenerator::setBaseVelocity(double d) {
+	_baseVelocity = d;
+}
+
 

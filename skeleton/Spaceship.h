@@ -1,13 +1,18 @@
 #pragma once
 #include "Entities/Particles.h"
+#include "ParticleGenerators/GaussianParticleGenerator.h"
 class Spaceship: public Particle
 {
+private:
+	const double IMPULSE_FORCE = 1000.;
+	GaussianParticleGenerator* _engineParticles;
+
+	static constexpr double SHIP_DAMP = 0.5;
+	static constexpr double SHIP_MASS = 1;
 public:
-	Spaceship(physx::PxVec3 pos = physx::PxVec3(0), physx::PxVec3 vel = physx::PxVec3(0), float mass = 1, float damp = 1);
+	Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle);
 	void keyPressed(unsigned char c);
 	void update(double t) override;
 
-private:
-	const double IMPULSE_FORCE = 1000.;
 };
 

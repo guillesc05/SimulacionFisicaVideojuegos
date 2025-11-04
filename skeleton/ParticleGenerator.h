@@ -19,6 +19,16 @@ public:
 
 	ParticleWithAttributes generateNewParticle();
 
+	physx::PxVec3 getBasePosition();
+	physx::PxVec3 getBaseDirection();
+	double getBaseDuration();
+	double getBaseVelocity();
+
+	void setBasePosition(physx::PxVec3);
+	void setBaseDirection(physx::PxVec3);
+	void setBaseDuration(double d);
+	void setBaseVelocity(double d);
+
 protected:
 	physx::PxVec3 _basePosition;
 	physx::PxVec3 _baseDirection;
