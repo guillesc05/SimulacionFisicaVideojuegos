@@ -25,6 +25,8 @@
     <ClCompile Include="WindForceGenerator.cpp" />
     <ClCompile Include="WhirlwindForceGenerator.cpp" />
     <ClCompile Include="ExplosionForceGenerator.cpp" />
+    <ClCompile Include="ProjectScene.cpp" />
+    <ClCompile Include="Spaceship.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -52,6 +54,8 @@
     <ClInclude Include="WhirlwindForceGenerator.h" />
     <ClInclude Include="ExplosionForceGenerator.h" />
     <ClInclude Include="UpdateableObject.h" />
+    <ClInclude Include="ProjectScene.h" />
+    <ClInclude Include="Spaceship.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

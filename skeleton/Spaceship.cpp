@@ -1,4 +1,5 @@
 #include "Spaceship.h"
+#include "RenderUtils.hpp"
 
 Spaceship::Spaceship(physx::PxVec3 pos, physx::PxVec3 vel, float mass, float damp): Particle(pos, vel, mass, damp) {
 	DeregisterRenderItem(renderItem);
@@ -6,15 +7,24 @@ Spaceship::Spaceship(physx::PxVec3 pos, physx::PxVec3 vel, float mass, float dam
 	renderItem = new RenderItem(shape, transform, Vector4(1, 1, 1, 1));
 }
 
+void Spaceship::update(double t) {
+	auto rot = getRotation();
+	setRotation(rot + physx::PxVec3(0, 360, 0)*t);
+}
+
 void Spaceship::keyPressed(unsigned char c) {
 	switch (c) {
-	case 'w':
+	case 'u':
+		addForce(physx::PxVec3(IMPULSE_FORCE, 0, 0));
 		break;
-	case 'a':
+	case 'h':
+		addForce(physx::PxVec3(0, 0, -IMPULSE_FORCE));
 		break;
-	case 's':
+	case 'j':
+		addForce(physx::PxVec3(-IMPULSE_FORCE, 0, 0));
 		break;
-	case 'd':
+	case 'k':
+		addForce(physx::PxVec3(0, 0, IMPULSE_FORCE));
 		break;
 	}
 }

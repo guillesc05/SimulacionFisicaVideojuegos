@@ -24,6 +24,8 @@ void Particle::integrate(double t) {
 	vel += accel * t;
 	transform->p = transform->p + vel * t;
 	vel *= pow(damping, t);
+
+	update(t);
 }
 
 void Particle::changeColor(physx::PxVec4 color) {
@@ -40,4 +42,32 @@ physx::PxVec3 Particle::getVelocity() {
 
 float Particle::getMass() {
 	return mass;
+}
+
+float Particle::getDamping() {
+	return damping;
+}
+void Particle::setDamping(float d) {
+	damping = d;
+}
+
+constexpr float PI = 22 / 7;
+float eulerToRad(float e) {
+	return e * (PI / 180.f);
+}
+
+float radToEuler(float r) {
+	return r / (PI / 180.f);
+}
+
+physx::PxVec3 Particle::getRotation() {
+	float f; physx::PxVec3 vec;
+	transform->q.toRadiansAndUnitAxis(f, vec);
+	return vec * radToEuler(f);
+}
+
+void Particle::setRotation(physx::PxVec3 r) {
+	transform->q = physx::PxQuat(eulerToRad(r.x), physx::PxVec3(1, 0, 0));
+	transform->q *= physx::PxQuat(eulerToRad(r.y), physx::PxVec3(0, 1, 0));
+	transform->q *= physx::PxQuat(eulerToRad(r.z), physx::PxVec3(0, 0, 1));
 }

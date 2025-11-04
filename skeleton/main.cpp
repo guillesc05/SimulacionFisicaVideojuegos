@@ -12,6 +12,7 @@
 #include "Scene.h"
 #include "Scenes/Scene1.h"
 #include "Scenes/Scene2.h"
+#include "ProjectScene.h"
 
 #include <iostream>
 
@@ -82,7 +83,7 @@ void initPhysics(bool interactive)
 	RegisterRenderItem(zAxis);
 
 	//CREAR ESCENA
-	currentScene = new Scene2();
+	currentScene = new ProjectScene();
 	currentScene->start();
 }
 
@@ -125,8 +126,8 @@ void cleanupPhysics(bool interactive)
 // Function called when a key is pressed
 void keyPress(unsigned char key, const PxTransform& camera)
 {
-	PX_UNUSED(camera);
 	currentScene->keyPress(key, camera);
+	PX_UNUSED(camera);
 
 	switch(toupper(key))
 	{

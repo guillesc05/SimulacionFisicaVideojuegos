@@ -10,12 +10,20 @@ public:
 	void changeColor(physx::PxVec4 color);
 
 	void integrate(double t) override;
+	virtual void update(double t){}
 	void addForce(physx::PxVec3 force);
 
 	physx::PxVec3 getPosition();
 	physx::PxVec3 getVelocity();
 
+	float getDamping();
+	void setDamping(float d);
+
 	float getMass();
+
+	physx::PxVec3 getRotation();
+	void setRotation(physx::PxVec3 r);
+
 protected:
 	physx::PxVec3 vel;
 
