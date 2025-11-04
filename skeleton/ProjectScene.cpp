@@ -3,7 +3,7 @@
 
 void ProjectScene::start() {
 	_spaceShip = new Spaceship();
-	_spaceShip->setDamping(0.1);
+	_spaceShip->setDamping(0.5);
 	updateableObjects.push_back(_spaceShip);
 }
 

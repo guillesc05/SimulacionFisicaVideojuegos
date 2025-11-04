@@ -8,6 +8,8 @@ Spaceship::Spaceship(physx::PxVec3 pos, physx::PxVec3 vel, float mass, float dam
 }
 
 void Spaceship::update(double t) {
+	GetCamera()->setEye(transform->p + physx::PxVec3(0.01, 100, 0));
+	GetCamera()->setDir((transform->p - GetCamera()->getEye()).getNormalized());
 }
 
 void Spaceship::keyPressed(unsigned char c) {
