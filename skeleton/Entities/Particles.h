@@ -24,6 +24,8 @@ public:
 	physx::PxVec3 getRotation();
 	void setRotation(physx::PxVec3 r);
 
+	physx::PxVec3 getRotationDirection();
+
 protected:
 	physx::PxVec3 vel;
 

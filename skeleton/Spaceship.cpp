@@ -8,23 +8,22 @@ Spaceship::Spaceship(physx::PxVec3 pos, physx::PxVec3 vel, float mass, float dam
 }
 
 void Spaceship::update(double t) {
-	auto rot = getRotation();
-	setRotation(rot + physx::PxVec3(0, 360, 0)*t);
 }
 
 void Spaceship::keyPressed(unsigned char c) {
+	auto rot = getRotation();
 	switch (c) {
 	case 'u':
-		addForce(physx::PxVec3(IMPULSE_FORCE, 0, 0));
+		addForce(getRotationDirection()*IMPULSE_FORCE);
 		break;
 	case 'h':
-		addForce(physx::PxVec3(0, 0, -IMPULSE_FORCE));
+		setRotation(rot + physx::PxVec3(0, 30, 0));
 		break;
 	case 'j':
-		addForce(physx::PxVec3(-IMPULSE_FORCE, 0, 0));
+		addForce(getRotationDirection() * -IMPULSE_FORCE);
 		break;
 	case 'k':
-		addForce(physx::PxVec3(0, 0, IMPULSE_FORCE));
+		setRotation(rot + physx::PxVec3(0, -30, 0));
 		break;
 	}
 }
