@@ -59,4 +59,12 @@ void ParticleGenerator::setBaseVelocity(double d) {
 	_baseVelocity = d;
 }
 
+void ParticleGenerator::setActive(bool b) {
+	canGenerate = b;
+}
+
+bool ParticleGenerator::isActive() {
+	return canGenerate;
+}
+
 

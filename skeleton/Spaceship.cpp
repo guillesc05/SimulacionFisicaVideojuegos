@@ -21,8 +21,10 @@ void Spaceship::update(double t) {
 void Spaceship::keyPressed(double t) {
 
 	if (KeyboardState::Instance()->getKeyState('u')) {
-		addForce(getRotationDirection() * IMPULSE_FORCE_PER_SECOND*t);
+		addForce(getRotationDirection() * IMPULSE_FORCE_PER_SECOND * t);
+		_engineParticles->setActive(true);
 	}
+	else _engineParticles->setActive(false);
 
 	if (KeyboardState::Instance()->getKeyState('j')) {
 		addForce(getRotationDirection() * -IMPULSE_FORCE_PER_SECOND*t);

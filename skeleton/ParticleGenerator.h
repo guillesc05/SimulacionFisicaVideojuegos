@@ -29,15 +29,23 @@ public:
 	void setBaseDuration(double d);
 	void setBaseVelocity(double d);
 
+	void setActive(bool b);
+	bool isActive();
 protected:
 	physx::PxVec3 _basePosition;
 	physx::PxVec3 _baseDirection;
 	double _baseDuration;
 	double _baseVelocity;
 
+	bool canGenerate = true;
+
+	
+
 	virtual physx::PxVec3 getNewParticlePosition();
 	virtual physx::PxVec3 getNewParticleDirection();
 	virtual double getNewParticleDuration();
 	virtual double getNewParticleVelocityModule();
+
+	
 };
 
