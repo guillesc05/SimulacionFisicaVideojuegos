@@ -1,5 +1,6 @@
 #include "Spaceship.h"
 #include "RenderUtils.hpp"
+#include "KeyboardState.h"
 
 Spaceship::Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle): Particle(pos, physx::PxVec3(0), SHIP_MASS, SHIP_DAMP), _engineParticles(engineParticle) {
 	DeregisterRenderItem(renderItem);
@@ -8,6 +9,8 @@ Spaceship::Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticl
 }
 
 void Spaceship::update(double t) {
+	keyPressed(t);
+
 	GetCamera()->setEye(transform->p + physx::PxVec3(0.01, 100, 0));
 	GetCamera()->setDir((transform->p - GetCamera()->getEye()).getNormalized());
 
@@ -15,20 +18,21 @@ void Spaceship::update(double t) {
 	_engineParticles->setBaseDirection(transform->q.rotate(physx::PxVec3(-1,0,0)));
 }
 
-void Spaceship::keyPressed(unsigned char c) {
-	auto rot = getRotation();
-	switch (c) {
-	case 'u':
-		addForce(getRotationDirection()*IMPULSE_FORCE);
-		break;
-	case 'h':
-		setRotation(rot + physx::PxVec3(0, 30, 0));
-		break;
-	case 'j':
-		addForce(getRotationDirection() * -IMPULSE_FORCE);
-		break;
-	case 'k':
-		setRotation(rot + physx::PxVec3(0, -30, 0));
-		break;
+void Spaceship::keyPressed(double t) {
+
+	if (KeyboardState::Instance()->getKeyState('u')) {
+		addForce(getRotationDirection() * IMPULSE_FORCE_PER_SECOND*t);
+	}
+
+	if (KeyboardState::Instance()->getKeyState('j')) {
+		addForce(getRotationDirection() * -IMPULSE_FORCE_PER_SECOND*t);
+	}
+
+	if (KeyboardState::Instance()->getKeyState('h')) {
+		setRotation(getRotation() + physx::PxVec3(0, ROTATION_VELOCITY, 0)*t);
+	}
+
+	if (KeyboardState::Instance()->getKeyState('k')) {
+		setRotation(getRotation() + physx::PxVec3(0, -ROTATION_VELOCITY, 0)*t);
 	}
 }

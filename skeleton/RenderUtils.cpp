@@ -4,6 +4,7 @@
 
 #include "core.hpp"
 #include "RenderUtils.hpp"
+#include "KeyboardState.h"
 
 
 using namespace physx;
@@ -57,8 +58,15 @@ void keyboardCallback(unsigned char key, int x, int y)
 	if(key==27)
 		exit(0);
 
+	KeyboardState::Instance()->setKeyDown(key);
+
 	if(!sCamera->handleKey(key, x, y))
 		keyPress(key, sCamera->getTransform());
+}
+
+void keyboardUpCallback(unsigned char key, int x, int y)
+{
+	KeyboardState::Instance()->setKeyUp(key);
 }
 
 void mouseCallback(int button, int state, int x, int y)
@@ -148,6 +156,8 @@ void renderLoop()
 	glutMouseFunc(mouseCallback);
 	glutMotionFunc(motionCallback);
 	motionCallback(0,0);
+	glutIgnoreKeyRepeat(1);
+	glutKeyboardUpFunc(keyboardUpCallback);
 
 	atexit(exitCallback);
 

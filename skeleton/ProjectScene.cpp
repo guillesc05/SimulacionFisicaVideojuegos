@@ -18,5 +18,7 @@ void ProjectScene::start() {
 }
 
 void ProjectScene::keyPress(unsigned char key, const physx::PxTransform& camera) {
-	_spaceShip->keyPressed(key);
+	//DEPRECATED 
+	//Ahora uso KeyboardState.h para saber continuamente si hay una tecla pulsada o no
+	//_spaceShip->keyPressed(key);
 }
