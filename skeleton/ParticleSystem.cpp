@@ -30,6 +30,7 @@ void ParticleSystem::integrate(double t) {
 		(*it).deadTime -= t;
 
 		for (auto forceGen : _forceGenerators) {
+			if(forceGen->isActive())
 			forceGen->applyForce((*it).particle);
 		}
 

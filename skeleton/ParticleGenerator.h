@@ -31,6 +31,8 @@ public:
 
 	void setActive(bool b);
 	bool isActive();
+
+	void setColor(physx::PxVec4 col);
 protected:
 	physx::PxVec3 _basePosition;
 	physx::PxVec3 _baseDirection;
@@ -38,6 +40,7 @@ protected:
 	double _baseVelocity;
 
 	bool canGenerate = true;
+	physx::PxVec4 _color = physx::PxVec4(1);
 
 	
 

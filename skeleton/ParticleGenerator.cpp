@@ -8,7 +8,7 @@ ParticleGenerator::ParticleGenerator(physx::PxVec3 p, physx::PxVec3 r, double d,
 ParticleWithAttributes ParticleGenerator::generateNewParticle() {
 	auto pos = getNewParticlePosition();
 	Particle* p = new Particle(pos, getNewParticleDirection().getNormalized() * getNewParticleVelocityModule(), 1.0, 0.9f);
-	p->changeColor(physx::PxVec4(0, 0, 1, 1));
+	p->changeColor(_color);
 	return { p, getNewParticleDuration(), pos };
 }
 
@@ -65,6 +65,10 @@ void ParticleGenerator::setActive(bool b) {
 
 bool ParticleGenerator::isActive() {
 	return canGenerate;
+}
+
+void ParticleGenerator::setColor(physx::PxVec4 col) {
+	_color = col;
 }
 
 

@@ -9,3 +9,11 @@ void ForceGenerator::integrate(double t) {
 	_time += t;
 }
 
+void ForceGenerator::setActive(bool b) {
+	_active = b;
+}
+
+bool ForceGenerator::isActive() {
+	return _active;
+}
+
