@@ -9,13 +9,30 @@ Spaceship::Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticl
 }
 
 void Spaceship::update(double t) {
+	updateCamera();
 	keyPressed(t);
 
-	GetCamera()->setEye(transform->p + physx::PxVec3(0.01, 100, 0));
-	GetCamera()->setDir((transform->p - GetCamera()->getEye()).getNormalized());
 
 	_engineParticles->setBasePosition(transform->p);
 	_engineParticles->setBaseDirection(transform->q.rotate(physx::PxVec3(-1,0,0)));
+}
+
+void Spaceship::updateCamera() {
+	physx::PxVec3 camPos;
+	physx::PxVec3 camDir;
+
+	if (cameraOnTop) {
+		camPos = transform->p + physx::PxVec3(0.01, 100, 0);
+		camDir = (transform->p - GetCamera()->getEye()).getNormalized();
+	}
+	else {
+		camPos = transform->p + physx::PxVec3(0.01, 2.5, 0);
+		camDir = getRotationDirection();
+	}
+
+	GetCamera()->setDir(camDir);
+	GetCamera()->setEye(camPos);
+	
 }
 
 void Spaceship::keyPressed(double t) {
@@ -37,4 +54,14 @@ void Spaceship::keyPressed(double t) {
 	if (KeyboardState::Instance()->getKeyState('k')) {
 		setRotation(getRotation() + physx::PxVec3(0, -ROTATION_VELOCITY, 0)*t);
 	}
+
+	if (!KeyboardState::Instance()->getKeyState('y')) {
+		pressingY = false;
+	}
+	if(KeyboardState::Instance()->getKeyState('y') && !pressingY) {
+		pressingY = true;
+		cameraOnTop = !cameraOnTop;
+	}
+
+
 }
