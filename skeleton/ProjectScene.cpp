@@ -21,7 +21,7 @@ void ProjectScene::start() {
 	engineParticles->setColor(physx::PxVec4(252. / 255., 51. / 255., 3. / 255., .5));
 	pSystem->addParticleGenerator(engineParticles);
 
-	_spaceShip = new Spaceship(physx::PxVec3(0),engineParticles);
+	_spaceShip = new Spaceship(physx::PxVec3(0),engineParticles, this);
 	_spaceShip->setDamping(0.5);
 	updateableObjects.push_back(_spaceShip);
 
