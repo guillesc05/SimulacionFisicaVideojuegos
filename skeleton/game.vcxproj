@@ -253,6 +253,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="DirectionalForceGenerator.cpp" />
     <ClCompile Include="Entities\Particles.cpp" />
@@ -270,14 +271,17 @@
     <ClCompile Include="Render\Camera.cpp" />
     <ClCompile Include="Render\Render.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Scene3.cpp" />
     <ClCompile Include="Scenes\Scene1.cpp" />
     <ClCompile Include="Scenes\Scene2.cpp" />
     <ClCompile Include="Spaceship.cpp" />
+    <ClCompile Include="SpringForceGenerator.cpp" />
     <ClCompile Include="vector3d.cpp" />
     <ClCompile Include="WhirlwindForceGenerator.cpp" />
     <ClCompile Include="WindForceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnchoredSpringForceGenerator.h" />
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="core.hpp" />
     <ClInclude Include="DirectionalForceGenerator.h" />
@@ -295,9 +299,11 @@
     <ClInclude Include="Render\Camera.h" />
     <ClInclude Include="Render\Render.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Scene3.h" />
     <ClInclude Include="Scenes\Scene1.h" />
     <ClInclude Include="Scenes\Scene2.h" />
     <ClInclude Include="Spaceship.h" />
+    <ClInclude Include="SpringForceGenerator.h" />
     <ClInclude Include="UpdateableObject.h" />
     <ClInclude Include="vector3d.h" />
     <ClInclude Include="WhirlwindForceGenerator.h" />

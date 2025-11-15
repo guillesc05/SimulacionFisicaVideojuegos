@@ -11,6 +11,10 @@ ParticleSystem::~ParticleSystem() {
 		delete particles.particle;
 	}
 
+	for (auto p : _permanentParticles) {
+		delete p;
+	}
+
 	for (auto pGen : _particleGenerators) {
 		delete pGen;
 	}
@@ -22,6 +26,10 @@ void ParticleSystem::addParticleGenerator(ParticleGenerator* gen) {
 
 void ParticleSystem::addForceGenerator(ForceGenerator* gen) {
 	_forceGenerators.push_back(gen);
+}
+
+void ParticleSystem::addPermanentParticle(Particle* p) {
+	_permanentParticles.push_back(p);
 }
 
 void ParticleSystem::integrate(double t) {
@@ -39,6 +47,14 @@ void ParticleSystem::integrate(double t) {
 			it = _particles.erase(it);
 		}
 		else it++;
+	}
+
+	for (auto p : _permanentParticles) {
+		p->integrate(t);
+
+		for (auto forceGen : _forceGenerators) {
+			if (forceGen->isActive()) forceGen->applyForce(p);
+		}
 	}
 
 	for (auto gen : _particleGenerators) {
