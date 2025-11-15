@@ -7,7 +7,6 @@ SpringForceGenerator::SpringForceGenerator(double k, double resting_length, Part
 }
 
 void SpringForceGenerator::applyForce(Particle* p) {
-	if (p == _other) return;
 
 	physx::PxVec3 relative_pos_vector = _other->getPosition() - p->getPosition();
 	physx::PxVec3 force;
