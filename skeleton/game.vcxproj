@@ -257,6 +257,7 @@
     <ClCompile Include="DirectionalForceGenerator.cpp" />
     <ClCompile Include="Entities\Particles.cpp" />
     <ClCompile Include="ExplosionForceGenerator.cpp" />
+    <ClCompile Include="FloatForceGenerator.cpp" />
     <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="GravitationalForceGenerator.cpp" />
     <ClCompile Include="KeyboardState.cpp" />
@@ -285,6 +286,7 @@
     <ClInclude Include="DirectionalForceGenerator.h" />
     <ClInclude Include="Entities\Particles.h" />
     <ClInclude Include="ExplosionForceGenerator.h" />
+    <ClInclude Include="FloatForceGenerator.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="GravitationalForceGenerator.h" />
     <ClInclude Include="KeyboardState.h" />

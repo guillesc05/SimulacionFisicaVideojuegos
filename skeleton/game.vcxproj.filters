@@ -30,6 +30,7 @@
     <ClCompile Include="KeyboardState.cpp" />
     <ClCompile Include="SpringForceGenerator.cpp" />
     <ClCompile Include="Scene3.cpp" />
+    <ClCompile Include="FloatForceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -62,6 +63,7 @@
     <ClInclude Include="KeyboardState.h" />
     <ClInclude Include="SpringForceGenerator.h" />
     <ClInclude Include="Scene3.h" />
+    <ClInclude Include="FloatForceGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
