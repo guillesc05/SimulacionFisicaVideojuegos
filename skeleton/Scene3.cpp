@@ -21,7 +21,7 @@ void Scene3::start() {
 	system->addPermanentParticle(p2);
 	Particle* p3 = new Particle(physx::PxVec3(10, 0, 0), physx::PxVec3(0), 1, 0.8);
 	system->addPermanentParticle(p3);
-	springForceGenerator = new SpringForceGenerator(10, 10);
+	springForceGenerator = new RubberBandForceGenerator(10, 10);
 	system->addForceGenerator(springForceGenerator);
 	springForceGenerator->connectParticles(p1, p2);
 	springForceGenerator->connectParticles(p2, p3);
