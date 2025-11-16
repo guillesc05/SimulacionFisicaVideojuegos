@@ -14,7 +14,7 @@ void Scene3::start() {
 	SpringForceGenerator* f1 = new SpringForceGenerator();
 	system->addForceGenerator(f1);
 
-	f1->connectParticles(p1, p2, 10, 20);
+	f1->anchorParticle(p1, physx::PxVec3(0,0,0), 10, 20);
 }
 
 void Scene3::keyPress(unsigned char key, const physx::PxTransform& camera) {

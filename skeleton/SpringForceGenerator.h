@@ -20,7 +20,7 @@ public:
 	void applyForce(Particle* p) override;
 
 	void connectParticles(Particle* p1, Particle* p2, double k, double resting_length);
-	void connectParticles(Particle* p1, physx::PxVec3 staticPos, double k, double resting_length);
+	void anchorParticle(Particle* p1, physx::PxVec3 staticPos, double k, double resting_length);
 
 protected:
 	std::unordered_map<Particle*, std::vector<SpringAttributes>> _connections;
