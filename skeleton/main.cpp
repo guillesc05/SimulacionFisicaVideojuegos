@@ -94,10 +94,13 @@ void initPhysics(bool interactive)
 // t: time passed since last call in milliseconds
 void stepPhysics(bool interactive, double t)
 {
+	GetCamera()->integrate();
+
 	PX_UNUSED(interactive);
 
 	gScene->simulate(t);
 	currentScene->integrate(t);
+	
 	gScene->fetchResults(true);
 }
 

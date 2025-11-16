@@ -32,6 +32,7 @@
 #include "Camera.h"
 #include <ctype.h>
 #include "foundation/PxMat33.h"
+#include "../KeyboardState.h"
 
 using namespace physx;
 
@@ -59,7 +60,7 @@ bool Camera::handleKey(unsigned char key, int x, int y, float speed)
 	PX_UNUSED(x);
 	PX_UNUSED(y);
 
-	PxVec3 viewY = mDir.cross(PxVec3(0,1,0)).getNormalized();
+	/*
 	switch(toupper(key))
 	{
 	case 'W':	mEye += mDir*2.0f*speed;		break;
@@ -68,7 +69,9 @@ bool Camera::handleKey(unsigned char key, int x, int y, float speed)
 	case 'D':	mEye += viewY*2.0f*speed;		break;
 	default:							return false;
 	}
-	return true;
+	*/
+
+	return false;
 }
 
 void Camera::handleAnalogMove(float x, float y)
@@ -76,6 +79,24 @@ void Camera::handleAnalogMove(float x, float y)
 	PxVec3 viewY = mDir.cross(PxVec3(0,1,0)).getNormalized();
 	mEye += mDir*y;
 	mEye += viewY*x;
+}
+
+void Camera::integrate() {
+	auto keyboard = KeyboardState::Instance();
+	PxVec3 viewY = mDir.cross(PxVec3(0, 1, 0)).getNormalized();
+
+	if (keyboard->getKeyState('w')) {
+		mEye += mDir * 2.0f * CAMERA_SPEED;
+	}
+	if (keyboard->getKeyState('s')) {
+		mEye -= mDir * 2.0f * CAMERA_SPEED;
+	}
+	if (keyboard->getKeyState('a')) {
+		mEye -= viewY * 2.0f * CAMERA_SPEED;
+	}
+	if (keyboard->getKeyState('d')) {
+		mEye += viewY * 2.0f * CAMERA_SPEED;
+	}
 }
 
 void Camera::handleMotion(int x, int y)
@@ -127,4 +148,6 @@ void Camera::setDir(physx::PxVec3 v) {
 
 
 }
+
+
 

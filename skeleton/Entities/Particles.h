@@ -19,6 +19,8 @@ public:
 	float getDamping();
 	void setDamping(float d);
 
+	void changeRenderItem(physx::PxShape* shape);
+
 	float getMass();
 
 	physx::PxVec3 getRotation();

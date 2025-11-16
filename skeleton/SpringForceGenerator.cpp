@@ -19,6 +19,7 @@ void SpringForceGenerator::connectParticles(Particle* p1, Particle* p2, double k
 
 void SpringForceGenerator::anchorParticle(Particle* p1, physx::PxVec3 static_position, double k, double restingLength) {
 	Particle* staticP = new Particle(static_position);
+	staticP->changeRenderItem(CreateShape(physx::PxBoxGeometry(2.0f, 2.0f, 2.0f)));
 	staticParticles.push_back(staticP);
 	_connections[p1].push_back(SpringAttributes(staticP, k, restingLength));
 }
@@ -36,6 +37,4 @@ void SpringForceGenerator::applyForce(Particle* p) {
 
 		p->addForce(force);
 	}
-
-	
 }

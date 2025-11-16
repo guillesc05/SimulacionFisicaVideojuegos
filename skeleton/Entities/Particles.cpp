@@ -47,8 +47,14 @@ float Particle::getMass() {
 float Particle::getDamping() {
 	return damping;
 }
+
 void Particle::setDamping(float d) {
 	damping = d;
+}
+
+void Particle::changeRenderItem(physx::PxShape* shape) {
+	DeregisterRenderItem(renderItem);
+	renderItem = new RenderItem(shape, transform, Vector4(1, 1, 1, 1));
 }
 
 constexpr float PI = 22 / 7;

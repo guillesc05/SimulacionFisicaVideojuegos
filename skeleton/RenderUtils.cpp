@@ -60,8 +60,7 @@ void keyboardCallback(unsigned char key, int x, int y)
 
 	KeyboardState::Instance()->setKeyDown(key);
 
-	if(!sCamera->handleKey(key, x, y))
-		keyPress(key, sCamera->getTransform());
+	keyPress(key, sCamera->getTransform());
 }
 
 void keyboardUpCallback(unsigned char key, int x, int y)
