@@ -94,7 +94,7 @@ void initPhysics(bool interactive)
 // t: time passed since last call in milliseconds
 void stepPhysics(bool interactive, double t)
 {
-	GetCamera()->integrate();
+	GetCamera()->integrate(t);
 
 	PX_UNUSED(interactive);
 

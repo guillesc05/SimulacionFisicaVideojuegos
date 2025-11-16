@@ -52,14 +52,14 @@ public:
 	void setEye(physx::PxVec3 v);
 	void setDir(physx::PxVec3 v);
 
-	void integrate();
+	void integrate(double t);
 private:
 	physx::PxVec3	mEye;
 	physx::PxVec3	mDir;
 	int				mMouseX;
 	int				mMouseY;
 
-	const double CAMERA_SPEED = .8;
+	const double CAMERA_SPEED = 50;
 };
 
 

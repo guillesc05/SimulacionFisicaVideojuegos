@@ -81,21 +81,23 @@ void Camera::handleAnalogMove(float x, float y)
 	mEye += viewY*x;
 }
 
-void Camera::integrate() {
+void Camera::integrate(double t) {
 	auto keyboard = KeyboardState::Instance();
 	PxVec3 viewY = mDir.cross(PxVec3(0, 1, 0)).getNormalized();
 
+	double speed = CAMERA_SPEED * t;
+
 	if (keyboard->getKeyState('w')) {
-		mEye += mDir * 2.0f * CAMERA_SPEED;
+		mEye += mDir * 2.0f * speed;
 	}
 	if (keyboard->getKeyState('s')) {
-		mEye -= mDir * 2.0f * CAMERA_SPEED;
+		mEye -= mDir * 2.0f * speed;
 	}
 	if (keyboard->getKeyState('a')) {
-		mEye -= viewY * 2.0f * CAMERA_SPEED;
+		mEye -= viewY * 2.0f * speed;
 	}
 	if (keyboard->getKeyState('d')) {
-		mEye += viewY * 2.0f * CAMERA_SPEED;
+		mEye += viewY * 2.0f * speed;
 	}
 }
 
