@@ -31,6 +31,7 @@
     <ClCompile Include="SpringForceGenerator.cpp" />
     <ClCompile Include="Scene3.cpp" />
     <ClCompile Include="FloatForceGenerator.cpp" />
+    <ClCompile Include="RubberBandForceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -64,6 +65,7 @@
     <ClInclude Include="SpringForceGenerator.h" />
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="FloatForceGenerator.h" />
+    <ClInclude Include="RubberBandForceGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

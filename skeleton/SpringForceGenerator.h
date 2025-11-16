@@ -3,28 +3,25 @@
 #include <unordered_map>
 #include <PxPhysicsAPI.h>
 
-struct SpringAttributes {
-	Particle* connectedParticle;
-	double k;
-	double restingLength;
-	SpringAttributes(Particle* p, double _k, double _rL) : connectedParticle(p), k(_k), restingLength(_rL) {
-
-	}
-};
-
 class SpringForceGenerator: public ForceGenerator
 {
 public:
-	SpringForceGenerator();
+	SpringForceGenerator(double k, double restingLength);
 	~SpringForceGenerator();
 	void applyForce(Particle* p) override;
 
-	void connectParticles(Particle* p1, Particle* p2, double k, double resting_length);
-	void anchorParticle(Particle* p1, physx::PxVec3 staticPos, double k, double resting_length);
+	void connectParticles(Particle* p1, Particle* p2);
+	void anchorParticle(Particle* p1, physx::PxVec3 staticPos);
+
+	void changeGlobalK(double newK);
+	double getK();
 
 protected:
-	std::unordered_map<Particle*, std::vector<SpringAttributes>> _connections;
+	std::unordered_map<Particle*, std::vector<Particle*>> _connections;
 
 	std::vector<Particle*> staticParticles;
+
+	double _k;
+	double _restingLength;
 };
 
