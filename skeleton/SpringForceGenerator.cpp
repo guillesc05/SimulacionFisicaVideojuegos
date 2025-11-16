@@ -2,19 +2,40 @@
 #include "Entities/Particles.h"
 
 
-SpringForceGenerator::SpringForceGenerator(double k, double resting_length, Particle* other):ForceGenerator(0), _k(k), _resting_length(resting_length), _other(other) {
+SpringForceGenerator::SpringForceGenerator():ForceGenerator(0) {
 
+}
+
+SpringForceGenerator::~SpringForceGenerator() {
+	for (auto p : staticParticles) {
+		delete p;
+	}
+}
+
+void SpringForceGenerator::connectParticles(Particle* p1, Particle* p2, double k, double restingLength) {
+	_connections[p1].push_back(SpringAttributes(p2, k, restingLength));
+	_connections[p2].push_back(SpringAttributes(p1, k, restingLength));
+}
+
+void SpringForceGenerator::connectParticles(Particle* p1, physx::PxVec3 static_position, double k, double restingLength) {
+	Particle* staticP = new Particle(static_position);
+	staticParticles.push_back(staticP);
+	_connections[p1].push_back(SpringAttributes(staticP, k, restingLength));
 }
 
 void SpringForceGenerator::applyForce(Particle* p) {
 
-	physx::PxVec3 relative_pos_vector = _other->getPosition() - p->getPosition();
-	physx::PxVec3 force;
+	for (auto springAttributes : _connections[p]) {
+		physx::PxVec3 relative_pos_vector = springAttributes.connectedParticle->getPosition() - p->getPosition();
+		physx::PxVec3 force;
 
-	const float length = relative_pos_vector.normalize();
-	const float delta_x = length - _resting_length;
+		const float length = relative_pos_vector.normalize();
+		const float delta_x = length - springAttributes.restingLength;
 
-	force = relative_pos_vector * delta_x * _k;
+		force = relative_pos_vector * delta_x * springAttributes.k;
 
-	p->addForce(force);
+		p->addForce(force);
+	}
+
+	
 }

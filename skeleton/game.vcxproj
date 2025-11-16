@@ -253,7 +253,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="DirectionalForceGenerator.cpp" />
     <ClCompile Include="Entities\Particles.cpp" />
@@ -281,7 +280,6 @@
     <ClCompile Include="WindForceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnchoredSpringForceGenerator.h" />
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="core.hpp" />
     <ClInclude Include="DirectionalForceGenerator.h" />

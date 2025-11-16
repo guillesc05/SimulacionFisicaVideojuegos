@@ -29,7 +29,6 @@
     <ClCompile Include="Spaceship.cpp" />
     <ClCompile Include="KeyboardState.cpp" />
     <ClCompile Include="SpringForceGenerator.cpp" />
-    <ClCompile Include="AnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="Scene3.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +61,6 @@
     <ClInclude Include="Spaceship.h" />
     <ClInclude Include="KeyboardState.h" />
     <ClInclude Include="SpringForceGenerator.h" />
-    <ClInclude Include="AnchoredSpringForceGenerator.h" />
     <ClInclude Include="Scene3.h" />
   </ItemGroup>
   <ItemGroup>
