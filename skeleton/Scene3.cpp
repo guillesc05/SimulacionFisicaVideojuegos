@@ -9,7 +9,7 @@
 #include "CustomParticle.h"
 
 void Scene3::start() {
-	auto system = new ParticleSystem(1);
+	auto system = new ParticleSystem<CustomParticle>(1);
 	pushUpdateableObject(system);
 
 	whirlWind = new WhirlwindForceGenerator(1, 1, 0, physx::PxVec3(0));

@@ -13,7 +13,6 @@
     <ClCompile Include="vector3d.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scenes\Scene1.cpp" />
-    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="ParticleGenerator.cpp" />
     <ClCompile Include="Scenes\Scene2.cpp" />
     <ClCompile Include="ParticleGenerators\GaussianParticleGenerator.cpp" />

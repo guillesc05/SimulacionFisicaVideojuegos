@@ -1,7 +1,13 @@
 #include "PhysicsUtils.h"
 #include <PxScene.h>
 
+PhysicsUtils* PhysicsUtils::instance = nullptr;
+
 PhysicsUtils::PhysicsUtils():gScene(nullptr) {
+}
+
+PhysicsUtils::~PhysicsUtils() {
+
 }
 
 PhysicsUtils* PhysicsUtils::Instance() {

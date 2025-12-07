@@ -13,6 +13,6 @@ public:
 	physx::PxScene* getScene();
 private:
 	PhysicsUtils();
-	static PhysicsUtils* instance;
 	physx::PxScene* gScene;
+	static PhysicsUtils* instance;
 };

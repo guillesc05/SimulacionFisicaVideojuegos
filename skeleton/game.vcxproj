@@ -265,7 +265,6 @@
     <ClCompile Include="ParticleGenerator.cpp" />
     <ClCompile Include="ParticleGenerators\GaussianParticleGenerator.cpp" />
     <ClCompile Include="ParticleGenerators\UniformParticleGenerator.cpp" />
-    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="PhysicsUtils.cpp" />
     <ClCompile Include="PhysxParticle.cpp" />
     <ClCompile Include="ProjectScene.cpp" />

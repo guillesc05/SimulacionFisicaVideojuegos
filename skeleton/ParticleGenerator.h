@@ -17,7 +17,13 @@ class ParticleGenerator
 public:
 	ParticleGenerator(physx::PxVec3 position, physx::PxVec3 rotation, double duration, double velocityModule);
 
-	ParticleWithAttributes generateNewParticle();
+	template <typename T>
+	ParticleWithAttributes generateNewParticle() {
+		auto pos = getNewParticlePosition();
+		Particle* p = new T(pos, getNewParticleDirection().getNormalized() * getNewParticleVelocityModule(), 1.0, 0.9f);
+		p->changeColor(_color);
+		return { p, getNewParticleDuration(), pos };
+	}
 
 	physx::PxVec3 getBasePosition();
 	physx::PxVec3 getBaseDirection();

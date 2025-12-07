@@ -1,16 +1,10 @@
 #include "ParticleGenerator.h"
 #include "Entities/Particles.h"
 #include "CustomParticle.h"
+#include <iostream>
 
 ParticleGenerator::ParticleGenerator(physx::PxVec3 p, physx::PxVec3 r, double d, double v):_basePosition(p), _baseDirection(r), _baseDuration(d), _baseVelocity(v) {
 	
-}
-
-ParticleWithAttributes ParticleGenerator::generateNewParticle() {
-	auto pos = getNewParticlePosition();
-	Particle* p = new CustomParticle(pos, getNewParticleDirection().getNormalized() * getNewParticleVelocityModule(), 1.0, 0.9f);
-	p->changeColor(_color);
-	return { p, getNewParticleDuration(), pos };
 }
 
 double ParticleGenerator::getNewParticleDuration() {

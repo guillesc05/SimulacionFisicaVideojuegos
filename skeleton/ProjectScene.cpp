@@ -2,10 +2,11 @@
 #include "Spaceship.h"
 #include "ParticleSystem.h"
 #include "WhirlwindForceGenerator.h"
+#include "CustomParticle.h"
 
 void ProjectScene::start() {
 	glClearColor(0, 0, 0, 1);
-	ParticleSystem* pSystem = new ParticleSystem(7);
+	ParticleSystem<CustomParticle>* pSystem = new ParticleSystem<CustomParticle>(7);
 	updateableObjects.push_back(pSystem);
 
 	
