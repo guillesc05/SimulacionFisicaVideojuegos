@@ -6,6 +6,7 @@
 #include "FloatForceGenerator.h"
 #include "WhirlwindForceGenerator.h"
 #include "RubberBandForceGenerator.h"
+#include "CustomParticle.h"
 
 void Scene3::start() {
 	auto system = new ParticleSystem(1);
@@ -15,11 +16,11 @@ void Scene3::start() {
 	whirlWind->setActive(false);
 	system->addForceGenerator(whirlWind);
 
-	Particle* p1 = new Particle(physx::PxVec3(0, -10, 0), physx::PxVec3(0), 1, 0.8);
+	Particle* p1 = new CustomParticle(physx::PxVec3(0, -10, 0), physx::PxVec3(0), 1, 0.8);
 	system->addPermanentParticle(p1);
-	Particle* p2 = new Particle(physx::PxVec3(0, 10, 0), physx::PxVec3(0), 1, 0.8);
+	Particle* p2 = new CustomParticle(physx::PxVec3(0, 10, 0), physx::PxVec3(0), 1, 0.8);
 	system->addPermanentParticle(p2);
-	Particle* p3 = new Particle(physx::PxVec3(10, 0, 0), physx::PxVec3(0), 1, 0.8);
+	Particle* p3 = new CustomParticle(physx::PxVec3(10, 0, 0), physx::PxVec3(0), 1, 0.8);
 	system->addPermanentParticle(p3);
 	springForceGenerator = new RubberBandForceGenerator(10, 10);
 	system->addForceGenerator(springForceGenerator);

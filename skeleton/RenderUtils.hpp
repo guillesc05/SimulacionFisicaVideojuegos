@@ -63,5 +63,7 @@ double GetLastTime();
 Camera* GetCamera();
 
 physx::PxShape* CreateShape(const physx::PxGeometry& geo, const physx::PxMaterial* mat = nullptr);
+physx::PxRigidDynamic* CreateDynamic(physx::PxTransform transform);
+physx::PxRigidStatic* CreateStatic(physx::PxTransform transform);
 
 #endif

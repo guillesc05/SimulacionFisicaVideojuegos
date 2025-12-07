@@ -3,6 +3,7 @@
 #include <PxPhysicsAPI.h>
 using namespace physx;
 #include "../Entities/Particles.h"
+#include "../CustomParticle.h"
 
 Scene1::Scene1() : Scene() {
 	for (int i = 0; i < MAX_BULLETS; i++) bullets[i] = nullptr;
@@ -15,7 +16,7 @@ void Scene1::start() {
 void Scene1::shootCannon(const physx::PxTransform& camera) {
 	PxVec3 velocity = camera.q.rotate(PxVec3(0.f, 0.f, -CANNON_BALL_SIMULATED_VELOCITY));
 
-	Particle* p = new Particle(camera.p, velocity, CANNON_BALL_SIMULATED_MASS, 1.f);
+	Particle* p = new CustomParticle(camera.p, velocity, CANNON_BALL_SIMULATED_MASS, 1.f);
 	p->changeColor({ 1.f,1.f,0.f,1.f });
 
 	shoot(p);
@@ -24,7 +25,7 @@ void Scene1::shootCannon(const physx::PxTransform& camera) {
 void Scene1::shootTankBullet(const physx::PxTransform& camera) {
 	PxVec3 velocity = camera.q.rotate(PxVec3(0.f, 0.f, -TANK_BULLET_SIMULATED_VELOCITY));
 
-	Particle* p = new Particle(camera.p, velocity, TANK_BULLET_SIMULATED_MASS, 1.f);
+	Particle* p = new CustomParticle(camera.p, velocity, TANK_BULLET_SIMULATED_MASS, 1.f);
 	p->changeColor({ 1.f,0.f,1.f,1.f });
 
 	shoot(p);
@@ -33,7 +34,7 @@ void Scene1::shootTankBullet(const physx::PxTransform& camera) {
 void Scene1::shootPistolBullet(const physx::PxTransform& camera) {
 	PxVec3 velocity = camera.q.rotate(PxVec3(0.f, 0.f, -PISTOL_BULLET_SIMULATED_VELOCITY));
 
-	Particle* p = new Particle(camera.p, velocity, PISTOL_BULLET_SIMULATED_MASS, 1.f);
+	Particle* p = new CustomParticle(camera.p, velocity, PISTOL_BULLET_SIMULATED_MASS, 1.f);
 	p->changeColor({ 0.f,1.f,1.f,1.f });
 
 	shoot(p);

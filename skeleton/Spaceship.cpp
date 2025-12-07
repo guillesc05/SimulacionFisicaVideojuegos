@@ -3,7 +3,7 @@
 #include "KeyboardState.h"
 #include "Scene.h"
 
-Spaceship::Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, Scene* s): Particle(pos, physx::PxVec3(0), SHIP_MASS, SHIP_DAMP), _engineParticles(engineParticle),
+Spaceship::Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, Scene* s): CustomParticle(pos, physx::PxVec3(0), SHIP_MASS, SHIP_DAMP), _engineParticles(engineParticle),
 _scene(s)
 {
 	DeregisterRenderItem(renderItem);
@@ -43,7 +43,7 @@ void Spaceship::shoot() {
 	if (cameraOnTop) dir = getRotationDirection();
 	else dir = GetCamera()->getDir();
 
-	Particle* p = new Particle(transform->p, vel+dir * SHOOT_VELOCITY, 1, 1);
+	Particle* p = new CustomParticle(transform->p, vel+dir * SHOOT_VELOCITY, 1, 1);
 	_scene->pushUpdateableObject(p);
 }
 

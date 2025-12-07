@@ -1,8 +1,9 @@
 #pragma once
 #include "Entities/Particles.h"
 #include "ParticleGenerators/GaussianParticleGenerator.h"
+#include "CustomParticle.h"
 class Scene;
-class Spaceship: public Particle
+class Spaceship: public CustomParticle
 {
 private:
 	Scene* _scene;

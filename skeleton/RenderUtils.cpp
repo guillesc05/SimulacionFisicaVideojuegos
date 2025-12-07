@@ -194,3 +194,11 @@ PxShape* CreateShape(const PxGeometry& geo, const PxMaterial* mat)
 	PxShape* shape = gPhysics->createShape(geo, *mat);
 	return shape;
 }
+
+physx::PxRigidDynamic* CreateDynamic(physx::PxTransform tr) {
+	return gPhysics->createRigidDynamic(tr);
+}
+
+physx::PxRigidStatic* CreateStatic(physx::PxTransform tr) {
+	return gPhysics->createRigidStatic(tr);
+}

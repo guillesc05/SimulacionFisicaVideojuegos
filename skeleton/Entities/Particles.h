@@ -2,42 +2,29 @@
 #include <PxPhysicsAPI.h>
 #include "../RenderUtils.hpp"
 #include "../UpdateableObject.h"
+//CLASE ABSTRACTA
 class Particle: public UpdateableObject {
 public:
-	Particle(physx::PxVec3 pos = physx::PxVec3(0), physx::PxVec3 vel = physx::PxVec3(0),float mass = 1 , float damp = 1);
-	~Particle();
+	virtual void changeColor(physx::PxVec4 color)=0;
+	virtual void changeRenderItem(physx::PxShape* shape)=0;
 
-	void changeColor(physx::PxVec4 color);
+	virtual void integrate(double t) override =0;
+	virtual void addForce(physx::PxVec3 force) =0;
 
-	void integrate(double t) override;
-	virtual void update(double t){}
-	void addForce(physx::PxVec3 force);
+	virtual physx::PxVec3 getPosition() =0;
+	virtual physx::PxVec3 getVelocity() =0;
 
-	physx::PxVec3 getPosition();
-	physx::PxVec3 getVelocity();
+	virtual float getDamping() =0;
+	virtual void setDamping(float d) =0;
+	virtual void update(double t) = 0;
 
-	float getDamping();
-	void setDamping(float d);
+	virtual float getMass() =0;
 
-	void changeRenderItem(physx::PxShape* shape);
+	virtual physx::PxVec3 getRotation() =0;
+	virtual void setRotation(physx::PxVec3 r) =0;
 
-	float getMass();
-
-	physx::PxVec3 getRotation();
-	void setRotation(physx::PxVec3 r);
-
-	physx::PxVec3 getRotationDirection();
+	virtual physx::PxVec3 getRotationDirection() =0;
 
 protected:
-	physx::PxVec3 vel;
-
-	float damping = 1;
-
-	float mass = 1.f;
-	float inverseMass = 1.f;
-
 	RenderItem* renderItem;
-	physx::PxTransform* transform;
-
-	physx::PxVec3 forceVector;
 };

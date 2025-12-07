@@ -1,5 +1,6 @@
 #include "ParticleGenerator.h"
 #include "Entities/Particles.h"
+#include "CustomParticle.h"
 
 ParticleGenerator::ParticleGenerator(physx::PxVec3 p, physx::PxVec3 r, double d, double v):_basePosition(p), _baseDirection(r), _baseDuration(d), _baseVelocity(v) {
 	
@@ -7,7 +8,7 @@ ParticleGenerator::ParticleGenerator(physx::PxVec3 p, physx::PxVec3 r, double d,
 
 ParticleWithAttributes ParticleGenerator::generateNewParticle() {
 	auto pos = getNewParticlePosition();
-	Particle* p = new Particle(pos, getNewParticleDirection().getNormalized() * getNewParticleVelocityModule(), 1.0, 0.9f);
+	Particle* p = new CustomParticle(pos, getNewParticleDirection().getNormalized() * getNewParticleVelocityModule(), 1.0, 0.9f);
 	p->changeColor(_color);
 	return { p, getNewParticleDuration(), pos };
 }

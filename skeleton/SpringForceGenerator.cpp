@@ -1,6 +1,6 @@
 #include "SpringForceGenerator.h"
 #include "Entities/Particles.h"
-
+#include "CustomParticle.h"
 
 SpringForceGenerator::SpringForceGenerator(double k, double restingLength):ForceGenerator(0), _k(k), _restingLength(restingLength) {
 
@@ -18,7 +18,7 @@ void SpringForceGenerator::connectParticles(Particle* p1, Particle* p2) {
 }
 
 void SpringForceGenerator::anchorParticle(Particle* p1, physx::PxVec3 static_position) {
-	Particle* staticP = new Particle(static_position);
+	Particle* staticP = new CustomParticle(static_position);
 	staticP->changeRenderItem(CreateShape(physx::PxBoxGeometry(2.0f, 2.0f, 2.0f)));
 	staticParticles.push_back(staticP);
 	_connections[p1].push_back(staticP);
