@@ -14,6 +14,7 @@
 #include "Scenes/Scene2.h"
 #include "Scene3.h"
 #include "ProjectScene.h"
+#include "PhysicsUtils.h"
 
 #include <iostream>
 
@@ -69,6 +70,9 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 
+
+	//Creacion singleton
+	PhysicsUtils::Instance()->setScene(gScene);
 	//objeto+++++++++++++++++++++++++++++++++++++++++++++++++++
 
 	physx::PxShape* xBall = CreateShape(PxSphereGeometry(2.0f));

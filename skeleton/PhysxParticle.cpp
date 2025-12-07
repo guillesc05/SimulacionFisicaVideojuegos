@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "RenderUtils.hpp"
+#include "PhysicsUtils.h"
 
 
 PhysxParticle::PhysxParticle(physx::PxVec3 p, float m, float d): Particle(){
@@ -10,6 +11,8 @@ PhysxParticle::PhysxParticle(physx::PxVec3 p, float m, float d): Particle(){
 
 	renderItem = new RenderItem(CreateShape(physx::PxSphereGeometry(2.0f)), _body, Vector4(1, 1, 1, 1));
 	_body->attachShape(*renderItem->shape);
+
+	PhysicsUtils::Instance()->getScene()->addActor(*_body);
 }
 
 PhysxParticle::~PhysxParticle() {

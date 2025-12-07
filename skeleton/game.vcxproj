@@ -266,6 +266,7 @@
     <ClCompile Include="ParticleGenerators\GaussianParticleGenerator.cpp" />
     <ClCompile Include="ParticleGenerators\UniformParticleGenerator.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="PhysicsUtils.cpp" />
     <ClCompile Include="PhysxParticle.cpp" />
     <ClCompile Include="ProjectScene.cpp" />
     <ClCompile Include="RenderUtils.cpp" />
@@ -297,6 +298,7 @@
     <ClInclude Include="ParticleGenerators\GaussianParticleGenerator.h" />
     <ClInclude Include="ParticleGenerators\UniformParticleGenerator.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="PhysicsUtils.h" />
     <ClInclude Include="PhysxParticle.h" />
     <ClInclude Include="ProjectScene.h" />
     <ClInclude Include="RenderUtils.hpp" />

@@ -33,6 +33,7 @@
     <ClCompile Include="RubberBandForceGenerator.cpp" />
     <ClCompile Include="PhysxParticle.cpp" />
     <ClCompile Include="CustomParticle.cpp" />
+    <ClCompile Include="PhysicsUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -69,6 +70,7 @@
     <ClInclude Include="RubberBandForceGenerator.h" />
     <ClInclude Include="PhysxParticle.h" />
     <ClInclude Include="CustomParticle.h" />
+    <ClInclude Include="PhysicsUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
