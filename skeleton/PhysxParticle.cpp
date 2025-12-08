@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "RenderUtils.hpp"
 #include "PhysicsUtils.h"
+#include "OperationUtils.h"
 
 
 PhysxParticle::PhysxParticle(physx::PxVec3 pos, physx::PxVec3 vel, float mass, float damp): Particle(){
@@ -54,29 +55,17 @@ void PhysxParticle::setDamping(float d) {
 	_body->setLinearDamping(d);
 }
 
-namespace PhysxParticleOperations {
-	constexpr float PI = 22 / 7;
-	float eulerToRad(float e) {
-		return e * (PI / 180.f);
-	}
-
-	float radToEuler(float r) {
-		return r / (PI / 180.f);
-	}
-
-};
-
 physx::PxVec3 PhysxParticle::getRotation() {
 	float f; physx::PxVec3 vec;
 	_body->getGlobalPose().q.toRadiansAndUnitAxis(f, vec);
-	return vec * PhysxParticleOperations::radToEuler(f);
+	return vec * radToEuler(f);
 }
 
 void PhysxParticle::setRotation(physx::PxVec3 r) {
 	physx::PxTransform tr = _body->getGlobalPose();
-	tr.q = physx::PxQuat(PhysxParticleOperations::eulerToRad(r.x), physx::PxVec3(1, 0, 0));
-	tr.q *= physx::PxQuat(PhysxParticleOperations::eulerToRad(r.y), physx::PxVec3(0, 1, 0));
-	tr.q *= physx::PxQuat(PhysxParticleOperations::eulerToRad(r.z), physx::PxVec3(0, 0, 1));
+	tr.q = physx::PxQuat(eulerToRad(r.x), physx::PxVec3(1, 0, 0));
+	tr.q *= physx::PxQuat(eulerToRad(r.y), physx::PxVec3(0, 1, 0));
+	tr.q *= physx::PxQuat(eulerToRad(r.z), physx::PxVec3(0, 0, 1));
 	_body->setGlobalPose(tr);
 }
 

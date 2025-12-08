@@ -1,6 +1,7 @@
 #include "CustomParticle.h"
 #include <math.h>
 #include <stdio.h>
+#include "OperationUtils.h"
 
 CustomParticle::CustomParticle(physx::PxVec3 p, physx::PxVec3 v, float m, float d) :vel(v), damping(d), mass(m), inverseMass(pow(m, -1)) {
 	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(2.0f));
@@ -56,15 +57,6 @@ float CustomParticle::getDamping() {
 
 void CustomParticle::setDamping(float d) {
 	damping = d;
-}
-
-constexpr float PI = 22 / 7;
-float eulerToRad(float e) {
-	return e * (PI / 180.f);
-}
-
-float radToEuler(float r) {
-	return r / (PI / 180.f);
 }
 
 physx::PxVec3 CustomParticle::getRotation() {

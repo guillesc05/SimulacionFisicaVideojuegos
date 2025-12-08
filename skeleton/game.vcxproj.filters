@@ -33,6 +33,7 @@
     <ClCompile Include="PhysxParticle.cpp" />
     <ClCompile Include="CustomParticle.cpp" />
     <ClCompile Include="PhysicsUtils.cpp" />
+    <ClCompile Include="StaticBody.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -70,6 +71,8 @@
     <ClInclude Include="PhysxParticle.h" />
     <ClInclude Include="CustomParticle.h" />
     <ClInclude Include="PhysicsUtils.h" />
+    <ClInclude Include="StaticBody.h" />
+    <ClInclude Include="OperationUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

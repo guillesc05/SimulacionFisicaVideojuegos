@@ -8,6 +8,7 @@
 #include "../ExplosionForceGenerator.h"
 #include "../CustomParticle.h"
 #include "../PhysxParticle.h"
+#include "../StaticBody.h"
 
 ParticleSystem<PhysxParticle>* particleSystem = nullptr;
 
@@ -31,6 +32,10 @@ void Scene2::start() {
 	//particleSystem->addForceGenerator(new WindForceGenerator(physx::PxVec3(1.f, 0.f, 0.f), 100, 1, 0, physx::PxVec3(0), 200));
 	particleSystem->addForceGenerator(whirlwindForceGenerator);
 	particleSystem->addForceGenerator(explosion);
+
+
+	auto staticBody = new StaticBody(physx::PxVec3(500, 100, 0), 500, 100, 10);
+	staticBody->setRotation(physx::PxVec3(45, 0, 0));
 }
 
 void Scene2::keyPress(unsigned char key, const physx::PxTransform& camera) {
