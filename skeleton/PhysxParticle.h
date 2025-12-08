@@ -6,7 +6,7 @@ class PhysxParticle: public Particle
 {
 public:
 
-	PhysxParticle(physx::PxVec3 pos = physx::PxVec3(0), float mass = 1, float damp = 1);
+	PhysxParticle(physx::PxVec3 pos = physx::PxVec3(0), physx::PxVec3 vel = physx::PxVec3(0), float mass = 1, float damp = 1);
 	~PhysxParticle();
 
 	void integrate(double t) override;
@@ -14,6 +14,8 @@ public:
 
 	physx::PxVec3 getPosition() override;
 	physx::PxVec3 getVelocity() override;
+
+	virtual void update(double t)override {}
 
 	float getDamping() override;
 	void setDamping(float d) override;

@@ -7,11 +7,12 @@
 #include "../WhirlwindForceGenerator.h"
 #include "../ExplosionForceGenerator.h"
 #include "../CustomParticle.h"
+#include "../PhysxParticle.h"
 
-ParticleSystem<CustomParticle>* particleSystem = nullptr;
+ParticleSystem<PhysxParticle>* particleSystem = nullptr;
 
 void Scene2::start() {
-	particleSystem = new ParticleSystem<CustomParticle>(6);
+	particleSystem = new ParticleSystem<PhysxParticle>(6);
 	updateableObjects.push_back(particleSystem);
 	particleSystem->addParticleGenerator(new UniformParticleGenerator(physx::PxVec3(100, 0, 0), physx::PxVec3(0, 0, 1), 2, 200, 0, 0.05, .1, 30));
 

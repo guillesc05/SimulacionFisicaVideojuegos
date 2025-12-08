@@ -5,12 +5,14 @@
 #include "PhysicsUtils.h"
 
 
-PhysxParticle::PhysxParticle(physx::PxVec3 p, float m, float d): Particle(){
-	_body = CreateDynamic(physx::PxTransform(p));
-	_body->setMass(m);
+PhysxParticle::PhysxParticle(physx::PxVec3 pos, physx::PxVec3 vel, float mass, float damp): Particle(){
+	_body = CreateDynamic(physx::PxTransform(pos));
 
 	renderItem = new RenderItem(CreateShape(physx::PxSphereGeometry(2.0f)), _body, Vector4(1, 1, 1, 1));
 	_body->attachShape(*renderItem->shape);
+
+	physx::PxRigidBodyExt::setMassAndUpdateInertia(*_body, mass);
+	_body->setLinearVelocity(vel);
 
 	PhysicsUtils::Instance()->getScene()->addActor(*_body);
 }
