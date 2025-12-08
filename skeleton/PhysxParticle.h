@@ -31,7 +31,9 @@ public:
 
 	void changeRenderItem(physx::PxShape* shape) override;
 
+	
+
 protected:
-	physx::PxRigidBody* _body;
+	physx::PxRigidDynamic* _body;
 };
 
