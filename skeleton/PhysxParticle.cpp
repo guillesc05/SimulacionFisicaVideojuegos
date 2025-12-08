@@ -20,6 +20,8 @@ PhysxParticle::PhysxParticle(physx::PxVec3 pos, physx::PxVec3 vel, float mass, f
 PhysxParticle::~PhysxParticle() {
 	DeregisterRenderItem(renderItem);
 	delete renderItem;
+	
+	PhysicsUtils::Instance()->getScene()->removeActor(*_body);
 }
 
 void PhysxParticle::addForce(physx::PxVec3 forceToAdd) {

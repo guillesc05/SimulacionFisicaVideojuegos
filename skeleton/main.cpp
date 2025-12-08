@@ -114,6 +114,12 @@ void cleanupPhysics(bool interactive)
 {
 	PX_UNUSED(interactive);
 
+	//eliminacion de la escena propia
+	DeregisterRenderItem(xAxis);
+	DeregisterRenderItem(yAxis);
+	DeregisterRenderItem(zAxis);
+	delete currentScene;
+
 	// Rigid Body ++++++++++++++++++++++++++++++++++++++++++
 	gScene->release();
 	gDispatcher->release();
@@ -125,10 +131,7 @@ void cleanupPhysics(bool interactive)
 	
 	gFoundation->release();
 
-	DeregisterRenderItem(xAxis);
-	DeregisterRenderItem(yAxis);
-	DeregisterRenderItem(zAxis);
-	delete currentScene;
+	
 	}
 
 // Function called when a key is pressed
