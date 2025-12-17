@@ -31,6 +31,8 @@ public:
 
 	void changeRenderItem(physx::PxShape* shape) override;
 
+	void setPosition(physx::PxVec3 pos);
+
 protected:
 	physx::PxVec3 vel;
 

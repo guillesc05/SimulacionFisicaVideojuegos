@@ -74,3 +74,7 @@ void CustomParticle::addRotation(physx::PxVec3 r) {
 physx::PxVec3 CustomParticle::getRotationDirection() {
 	return transform->q.rotate(physx::PxVec3(1, 0, 0));
 }
+
+void CustomParticle::setPosition(physx::PxVec3 pos) {
+	transform->p = pos;
+}

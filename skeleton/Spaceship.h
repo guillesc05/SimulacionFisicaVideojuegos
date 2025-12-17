@@ -10,7 +10,7 @@ class Spaceship: public PhysxParticle
 private:
 	Scene* _scene;
 	ParticleSystem<CustomParticle>* _bulletPSystem;
-	const double IMPULSE_FORCE_PER_SECOND = 10000.;
+	const double IMPULSE_FORCE_PER_SECOND = 10000000.;
 	const double ROTATION_VELOCITY = 180.;
 
 	const double SHOOT_VELOCITY = 200;
@@ -20,7 +20,13 @@ private:
 	GaussianParticleGenerator* _engineParticles;
 
 	static constexpr double SHIP_DAMP = 0.5;
-	static constexpr double SHIP_MASS = 1;
+	static constexpr double SHIP_MASS = 1000;
+
+	static constexpr double CANNON_DAMP = 0.1;
+	static constexpr double CANNON_MASS = 30;
+	static constexpr double BACKLASH_MAGNITUDE = 50000;
+
+	CustomParticle* _cannonParticle;
 
 	bool pressingY = false;
 	bool pressingShoot = false;

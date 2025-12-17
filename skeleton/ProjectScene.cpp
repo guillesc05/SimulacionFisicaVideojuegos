@@ -41,7 +41,6 @@ void ProjectScene::start() {
 	updateableObjects.push_back(bulletParticleSystem);
 	_spaceShip = new Spaceship(physx::PxVec3(0),engineParticles, bulletParticleSystem ,this);
 	_spaceShip->setDamping(0.5);
-	updateableObjects.push_back(_spaceShip);
 }
 
 void ProjectScene::keyPress(unsigned char key, const physx::PxTransform& camera) {

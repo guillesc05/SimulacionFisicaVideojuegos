@@ -5,6 +5,8 @@
 #include "CustomParticle.h"
 #include "Bullet.h"
 #include <cmath>
+#include "PhysicsUtils.h"
+#include "SpringForceGenerator.h"
 
 Spaceship::Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, ParticleSystem<CustomParticle>* bulletParticleSystem, Scene* s): PhysxParticle(pos, physx::PxVec3(0), SHIP_MASS, SHIP_DAMP), _engineParticles(engineParticle),
 _scene(s), _bulletPSystem(bulletParticleSystem)
@@ -12,6 +14,19 @@ _scene(s), _bulletPSystem(bulletParticleSystem)
 	changeRenderItem(CreateShape(physx::PxBoxGeometry(2.0f,2.0f, 2.0f)));
 
 	_body->setRigidDynamicLockFlags(physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_Y | physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_X | physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Z);
+	//canyon
+	//_cannonBody = CreateDynamic(physx::PxTransform(physx::PxVec3(-4,0,0)));
+	_cannonParticle = new CustomParticle(physx::PxVec3(4, 0, 0), physx::PxVec3(0), CANNON_MASS, CANNON_DAMP);
+	_cannonParticle->changeRenderItem(CreateShape(physx::PxSphereGeometry(1)));
+
+	//---MUELLE
+	auto muelleSystem = new ParticleSystem<PhysxParticle>(0);
+	s->pushUpdateableObject(muelleSystem);
+	muelleSystem->addPermanentParticle(this);
+	muelleSystem->addPermanentParticle(_cannonParticle);
+	SpringForceGenerator* springFG = new SpringForceGenerator(30000, (getPosition() - _cannonParticle->getPosition()).magnitude());
+	springFG->connectParticles(_cannonParticle, this);
+	muelleSystem->addForceGenerator(springFG);
 }
 
 void Spaceship::update(double t) {
@@ -21,6 +36,11 @@ void Spaceship::update(double t) {
 
 	_engineParticles->setBasePosition(getPosition());
 	_engineParticles->setBaseDirection(-getRotationDirection());
+
+	//--move cannon to the rotation
+	auto distanceMag = (getPosition() - _cannonParticle->getPosition()).magnitude();
+
+	_cannonParticle->setPosition(getPosition() + getRotationDirection() * distanceMag);
 }
 
 void Spaceship::updateCamera() {
@@ -46,8 +66,11 @@ void Spaceship::shoot() {
 	if (cameraOnTop) dir = getRotationDirection();
 	else dir = GetCamera()->getDir();
 
-	Particle* p = new Bullet(getPosition() + dir * 4, getVelocity() + dir * SHOOT_VELOCITY,_bulletPSystem, _body->getGlobalPose().q);
+	Particle* p = new Bullet(getPosition() + dir * 8, getVelocity() + dir * SHOOT_VELOCITY,_bulletPSystem, _body->getGlobalPose().q);
 	_scene->pushUpdateableObject(p);
+
+	//aplicar fuerza al cannon
+	_cannonParticle->addForce(-dir * BACKLASH_MAGNITUDE);
 }
 
 void Spaceship::keyPressed(double t) {
