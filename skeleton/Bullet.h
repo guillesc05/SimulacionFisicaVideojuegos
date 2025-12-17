@@ -7,7 +7,8 @@ class GaussianParticleGenerator;
 class Bullet: public PhysxParticle
 {
 	GaussianParticleGenerator* _rocketParticles;
-	const float TIME_ALIVE = 2;
+	constexpr static float TIME_ALIVE = 2;
+	constexpr static float ROCKET_MASS = 10;
 	float currentTime = 0;
 public:
 	Bullet(physx::PxVec3 pos, physx::PxVec3 direction, ParticleSystem<CustomParticle>* bulletParticleSystem, physx::PxQuat rotation);

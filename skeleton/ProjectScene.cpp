@@ -5,7 +5,13 @@
 #include "CustomParticle.h"
 #include "PhysicsUtils.h"
 
+#include "Enemy.h"
+
+#include <random>
+
 void ProjectScene::start() {
+
+
 	GetCamera()->disableCameraInput();
 	glClearColor(0, 0, 0, 1);
 	PhysicsUtils::Instance()->getScene()->setGravity(physx::PxVec3(0));
@@ -41,6 +47,20 @@ void ProjectScene::start() {
 	updateableObjects.push_back(bulletParticleSystem);
 	_spaceShip = new Spaceship(physx::PxVec3(0),engineParticles, bulletParticleSystem ,this);
 	_spaceShip->setDamping(0.5);
+
+	//--ENEMIES
+	ParticleSystem<CustomParticle>* enemyParticleSystem = new ParticleSystem<CustomParticle>(1);
+	updateableObjects.push_back(enemyParticleSystem);
+
+	std::random_device rd; // obtain a random number from hardware
+	std::mt19937 gen(rd()); // seed the generator
+	std::uniform_int_distribution<> distr(-MAX_ENEMY_SPAWN_RANGE, MAX_ENEMY_SPAWN_RANGE); // define the range
+
+	for (int i = 0; i < NUM_ENEMIES; i++) {
+		auto enemy = new Enemy(physx::PxVec3(distr(gen), 0, distr(gen)), enemyParticleSystem, this);
+		enemyParticleSystem->addPermanentParticle(enemy);
+	}
+	
 }
 
 void ProjectScene::keyPress(unsigned char key, const physx::PxTransform& camera) {

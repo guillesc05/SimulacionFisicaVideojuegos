@@ -35,6 +35,8 @@
     <ClCompile Include="PhysicsUtils.cpp" />
     <ClCompile Include="StaticBody.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="PlayerInfoSingleton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -75,6 +77,8 @@
     <ClInclude Include="StaticBody.h" />
     <ClInclude Include="OperationUtils.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="PlayerInfoSingleton.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

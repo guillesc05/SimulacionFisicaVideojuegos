@@ -8,6 +8,8 @@
 #include "PhysicsUtils.h"
 #include "SpringForceGenerator.h"
 
+#include "PlayerInfoSingleton.h"
+
 Spaceship::Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, ParticleSystem<CustomParticle>* bulletParticleSystem, Scene* s): PhysxParticle(pos, physx::PxVec3(0), SHIP_MASS, SHIP_DAMP), _engineParticles(engineParticle),
 _scene(s), _bulletPSystem(bulletParticleSystem)
 {
@@ -41,6 +43,10 @@ void Spaceship::update(double t) {
 	auto distanceMag = (getPosition() - _cannonParticle->getPosition()).magnitude();
 
 	_cannonParticle->setPosition(getPosition() + getRotationDirection() * distanceMag);
+
+
+	//actualizar singleton con posicion del playerr
+	PlayerInfoSingleton::Instance()->setPlayerPos(getPosition());
 }
 
 void Spaceship::updateCamera() {
@@ -67,7 +73,7 @@ void Spaceship::shoot() {
 	else dir = GetCamera()->getDir();
 
 	Particle* p = new Bullet(getPosition() + dir * 8, getVelocity() + dir * SHOOT_VELOCITY,_bulletPSystem, _body->getGlobalPose().q);
-	_scene->pushUpdateableObject(p);
+	_bulletPSystem->addPermanentParticle(p);
 
 	//aplicar fuerza al cannon
 	_cannonParticle->addForce(-dir * BACKLASH_MAGNITUDE);
