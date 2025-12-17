@@ -22,7 +22,7 @@ public:
 	float getMass() override;
 
 	physx::PxVec3 getRotation() override;
-	void setRotation(physx::PxVec3 r) override;
+	void addRotation(physx::PxVec3 r) override;
 
 	physx::PxVec3 getRotationDirection() override;
 

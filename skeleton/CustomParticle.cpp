@@ -65,8 +65,8 @@ physx::PxVec3 CustomParticle::getRotation() {
 	return vec * radToEuler(f);
 }
 
-void CustomParticle::setRotation(physx::PxVec3 r) {
-	transform->q = physx::PxQuat(eulerToRad(r.x), physx::PxVec3(1, 0, 0));
+void CustomParticle::addRotation(physx::PxVec3 r) {
+	transform->q *= physx::PxQuat(eulerToRad(r.x), physx::PxVec3(1, 0, 0));
 	transform->q *= physx::PxQuat(eulerToRad(r.y), physx::PxVec3(0, 1, 0));
 	transform->q *= physx::PxQuat(eulerToRad(r.z), physx::PxVec3(0, 0, 1));
 }

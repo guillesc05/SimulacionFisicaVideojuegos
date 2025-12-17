@@ -1,16 +1,19 @@
 #pragma once
 #include "Entities/Particles.h"
 #include "ParticleGenerators/GaussianParticleGenerator.h"
+#include "PhysxParticle.h"
+#include "ParticleSystem.h"
 #include "CustomParticle.h"
 class Scene;
-class Spaceship: public CustomParticle
+class Spaceship: public PhysxParticle
 {
 private:
 	Scene* _scene;
+	ParticleSystem<CustomParticle>* _bulletPSystem;
 	const double IMPULSE_FORCE_PER_SECOND = 10000.;
 	const double ROTATION_VELOCITY = 180.;
 
-	const double SHOOT_VELOCITY = 100;
+	const double SHOOT_VELOCITY = 200;
 
 	bool cameraOnTop = true;
 
@@ -24,7 +27,7 @@ private:
 	void updateCamera();
 	void shoot();
 public:
-	Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, Scene* scene);
+	Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, ParticleSystem<CustomParticle>* bulletParticleSystem ,Scene* scene);
 	void keyPressed(double t);
 	void update(double t) override;
 

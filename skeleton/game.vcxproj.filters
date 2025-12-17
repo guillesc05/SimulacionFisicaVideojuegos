@@ -34,6 +34,7 @@
     <ClCompile Include="CustomParticle.cpp" />
     <ClCompile Include="PhysicsUtils.cpp" />
     <ClCompile Include="StaticBody.cpp" />
+    <ClCompile Include="Bullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="PhysicsUtils.h" />
     <ClInclude Include="StaticBody.h" />
     <ClInclude Include="OperationUtils.h" />
+    <ClInclude Include="Bullet.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

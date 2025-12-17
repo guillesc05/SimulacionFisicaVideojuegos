@@ -49,6 +49,8 @@ public:
 	physx::PxVec3		getDir()	const;
 	physx::PxTransform	getTransform() const;
 
+	void disableCameraInput();
+
 	void setEye(physx::PxVec3 v);
 	void setDir(physx::PxVec3 v);
 
@@ -60,6 +62,8 @@ private:
 	int				mMouseY;
 
 	const double CAMERA_SPEED = 50;
+
+	bool cameraInputDisabled = false;
 };
 
 

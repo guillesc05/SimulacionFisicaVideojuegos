@@ -46,7 +46,7 @@ public:
 
 		for (auto gen : _particleGenerators) {
 			if (!gen->isActive()) continue;
-			for (int i = 0; i < _particles_per_tick / _particleGenerators.size(); i++)
+			for (int i = 0; i < _particles_per_tick; i++)
 				_particles.push_back(gen->generateNewParticle<T>());
 		}
 	}

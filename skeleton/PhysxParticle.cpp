@@ -61,12 +61,8 @@ physx::PxVec3 PhysxParticle::getRotation() {
 	return vec * radToEuler(f);
 }
 
-void PhysxParticle::setRotation(physx::PxVec3 r) {
-	physx::PxTransform tr = _body->getGlobalPose();
-	tr.q = physx::PxQuat(eulerToRad(r.x), physx::PxVec3(1, 0, 0));
-	tr.q *= physx::PxQuat(eulerToRad(r.y), physx::PxVec3(0, 1, 0));
-	tr.q *= physx::PxQuat(eulerToRad(r.z), physx::PxVec3(0, 0, 1));
-	_body->setGlobalPose(tr);
+void PhysxParticle::addRotation(physx::PxVec3 r) {
+	_body->setAngularVelocity(r);
 }
 
 physx::PxVec3 PhysxParticle::getRotationDirection() {

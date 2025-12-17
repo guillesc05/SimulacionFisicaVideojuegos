@@ -21,7 +21,7 @@ public:
 	virtual float getMass() =0;
 
 	virtual physx::PxVec3 getRotation() =0;
-	virtual void setRotation(physx::PxVec3 r) =0;
+	virtual void addRotation(physx::PxVec3 r) =0;
 
 	virtual physx::PxVec3 getRotationDirection() =0;
 

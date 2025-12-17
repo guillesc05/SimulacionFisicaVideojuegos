@@ -2,13 +2,16 @@
 #include "RenderUtils.hpp"
 #include "KeyboardState.h"
 #include "Scene.h"
+#include "CustomParticle.h"
+#include "Bullet.h"
+#include <cmath>
 
-Spaceship::Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, Scene* s): CustomParticle(pos, physx::PxVec3(0), SHIP_MASS, SHIP_DAMP), _engineParticles(engineParticle),
-_scene(s)
+Spaceship::Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, ParticleSystem<CustomParticle>* bulletParticleSystem, Scene* s): PhysxParticle(pos, physx::PxVec3(0), SHIP_MASS, SHIP_DAMP), _engineParticles(engineParticle),
+_scene(s), _bulletPSystem(bulletParticleSystem)
 {
-	DeregisterRenderItem(renderItem);
-	physx::PxShape* shape = CreateShape(physx::PxBoxGeometry(2.0f,2.0f, 2.0f));
-	renderItem = new RenderItem(shape, transform, Vector4(1, 1, 1, 1));
+	changeRenderItem(CreateShape(physx::PxBoxGeometry(2.0f,2.0f, 2.0f)));
+
+	_body->setRigidDynamicLockFlags(physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_Y | physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_X | physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Z);
 }
 
 void Spaceship::update(double t) {
@@ -16,8 +19,8 @@ void Spaceship::update(double t) {
 	keyPressed(t);
 
 
-	_engineParticles->setBasePosition(transform->p);
-	_engineParticles->setBaseDirection(transform->q.rotate(physx::PxVec3(-1,0,0)));
+	_engineParticles->setBasePosition(getPosition());
+	_engineParticles->setBaseDirection(-getRotationDirection());
 }
 
 void Spaceship::updateCamera() {
@@ -25,16 +28,16 @@ void Spaceship::updateCamera() {
 	physx::PxVec3 camDir;
 
 	if (cameraOnTop) {
-		camPos = transform->p + physx::PxVec3(20, 100, 0);
-		camDir = (transform->p - GetCamera()->getEye()).getNormalized();
+		camPos = getPosition() + physx::PxVec3(20, 100, 0);
+		camDir = (getPosition() - GetCamera()->getEye()).getNormalized();
 	}
 	else {
-		camPos = transform->p + physx::PxVec3(0.01, 2.5, 0);
+		camPos = getPosition() + physx::PxVec3(0.01, 2.5, 0);
 		camDir = getRotationDirection();
 	}
 
-	GetCamera()->setDir(camDir);
 	GetCamera()->setEye(camPos);
+	GetCamera()->setDir(camDir);
 	
 }
 
@@ -43,7 +46,7 @@ void Spaceship::shoot() {
 	if (cameraOnTop) dir = getRotationDirection();
 	else dir = GetCamera()->getDir();
 
-	Particle* p = new CustomParticle(transform->p, vel+dir * SHOOT_VELOCITY, 1, 1);
+	Particle* p = new Bullet(getPosition() + dir * 4, getVelocity() + dir * SHOOT_VELOCITY,_bulletPSystem, _body->getGlobalPose().q);
 	_scene->pushUpdateableObject(p);
 }
 
@@ -60,11 +63,13 @@ void Spaceship::keyPressed(double t) {
 	}
 
 	if (KeyboardState::Instance()->getKeyState('h')) {
-		setRotation(getRotation() + physx::PxVec3(0, ROTATION_VELOCITY, 0)*t);
+		addRotation(physx::PxVec3(0, ROTATION_VELOCITY, 0)*t);
 	}
-
-	if (KeyboardState::Instance()->getKeyState('k')) {
-		setRotation(getRotation() + physx::PxVec3(0, -ROTATION_VELOCITY, 0)*t);
+	else if (KeyboardState::Instance()->getKeyState('k')) {
+		addRotation(physx::PxVec3(0, -ROTATION_VELOCITY, 0)*t);
+	}
+	else {
+		addRotation(physx::PxVec3(0, 0, 0));
 	}
 
 	if (!KeyboardState::Instance()->getKeyState('y')) {
