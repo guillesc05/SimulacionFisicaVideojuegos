@@ -89,7 +89,7 @@ void initPhysics(bool interactive)
 	RegisterRenderItem(zAxis);
 
 	//CREAR ESCENA
-	currentScene = new ProjectScene();
+	currentScene = new Scene2();
 	currentScene->start();
 }
 
@@ -159,10 +159,7 @@ void onCollision(physx::PxActor* actor1, physx::PxActor* actor2)
 	PX_UNUSED(actor1);
 	PX_UNUSED(actor2);
 
-	auto physxParticle1 = static_cast<PhysxParticle*>(actor1->userData);
-	auto physxParticle2 = static_cast<PhysxParticle*>(actor2->userData);
-	physxParticle1->onCollision(physxParticle2);
-	physxParticle2->onCollision(physxParticle1);
+	currentScene->onCollision(actor1, actor2);
 }
 
 

@@ -83,3 +83,12 @@ void ProjectScene::keyPress(unsigned char key, const physx::PxTransform& camera)
 	//Ahora uso KeyboardState.h para saber continuamente si hay una tecla pulsada o no
 	//_spaceShip->keyPressed(key);
 }
+
+void ProjectScene::onCollision(physx::PxActor* p1, physx::PxActor* p2) {
+	const auto physxParticle1 = static_cast<PhysxParticle*>(p1->userData);
+	const auto physxParticle2 = static_cast<PhysxParticle*>(p2->userData);
+	if (!physxParticle1 || !physxParticle2) return;
+
+	physxParticle1->onCollision(physxParticle2);
+	physxParticle2->onCollision(physxParticle1);
+}
