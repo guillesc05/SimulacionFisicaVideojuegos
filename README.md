@@ -1,8 +1,16 @@
-# SimulacionFisicaVideojuegos
-Repositorio de las prácticas de la asignatura de Simulación Física de Videojuegos
+# STAR FIGHTER
+## SimulacionFisicaVideojuegos - Guillermo Sánchez Cuesta
 
-En la carpeta skeleton estará vuestro código fuente
+**En este juego encarnas al intrépido cazarrecompensas Federico, cuya misión consiste en derribar las naves de los infames piratas espaciales. Gracias a su radar espacial es capaz de localizar las naves enemigas. 
+Una vez acaba con todos los enemigos que le muestra el radar, su misión se cumple.
+Si las naves de los piratas espaciales colisionan con la nave de Federico, morirá.**
 
-Necesitaréis además descomprimir el archivo que se indica a continuación en la raíz del repositorio:
+Controles de la nave
+W: Acelerar
+S: Frenar
+A: Girar hacia la izquierda
+D: Girar hacia la derecha
+Y: Cambiar de modo de vista
+Espacio: Disparar proyectil
 
-Carpetas bin y common https://ucomplutense-my.sharepoint.com/:f:/g/personal/liagar05_ucm_es/ElNxHPmZVj9Ni9-8FKTKp7cBJHAarnL3vvEvG50z0QMrzg
+Con la tecla Q y E se activan/desactivam los generadores de torbellino y de viento.
