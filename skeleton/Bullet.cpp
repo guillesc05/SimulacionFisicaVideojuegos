@@ -2,7 +2,7 @@
 #include "OperationUtils.h"
 #include "ParticleGenerators/GaussianParticleGenerator.h"
 
-Bullet::Bullet(physx::PxVec3 pos, physx::PxVec3 velocity, ParticleSystem<CustomParticle>* bulletParticleSystem, physx::PxQuat rotation): PhysxParticle(pos, velocity,ROCKET_MASS,0)  {
+Bullet::Bullet(physx::PxVec3 pos, physx::PxVec3 velocity, ParticleSystem<CustomParticle>* bulletParticleSystem, physx::PxQuat rotation): PhysxParticle(pos, velocity,ROCKET_MASS,0, PhysxParticle::BULLET)  {
 	changeRenderItem(CreateShape(physx::PxBoxGeometry(2.0f, .5f, 0.5f)));
 	auto tr = _body->getGlobalPose();
 	tr.q = rotation;

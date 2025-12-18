@@ -15,6 +15,7 @@
 #include "Scene3.h"
 #include "ProjectScene.h"
 #include "PhysicsUtils.h"
+#include "PhysxParticle.h"
 
 #include <iostream>
 
@@ -157,6 +158,11 @@ void onCollision(physx::PxActor* actor1, physx::PxActor* actor2)
 {
 	PX_UNUSED(actor1);
 	PX_UNUSED(actor2);
+
+	auto physxParticle1 = static_cast<PhysxParticle*>(actor1->userData);
+	auto physxParticle2 = static_cast<PhysxParticle*>(actor2->userData);
+	physxParticle1->onCollision(physxParticle2);
+	physxParticle2->onCollision(physxParticle1);
 }
 
 

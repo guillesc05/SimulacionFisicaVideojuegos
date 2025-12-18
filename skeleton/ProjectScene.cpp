@@ -4,6 +4,7 @@
 #include "WhirlwindForceGenerator.h"
 #include "CustomParticle.h"
 #include "PhysicsUtils.h"
+#include "GameInfoSingleton.h"
 
 #include "Enemy.h"
 
@@ -45,7 +46,7 @@ void ProjectScene::start() {
 	ParticleSystem<CustomParticle>* bulletParticleSystem = new ParticleSystem<CustomParticle>(1);
 
 	updateableObjects.push_back(bulletParticleSystem);
-	_spaceShip = new Spaceship(physx::PxVec3(0),engineParticles, bulletParticleSystem ,this);
+	_spaceShip = new Spaceship(physx::PxVec3(0),engineParticles, bulletParticleSystem ,this, NUM_ENEMIES);
 	_spaceShip->setDamping(0.5);
 
 	//--ENEMIES
@@ -56,11 +57,14 @@ void ProjectScene::start() {
 	std::mt19937 gen(rd()); // seed the generator
 	std::uniform_int_distribution<> distr(-MAX_ENEMY_SPAWN_RANGE, MAX_ENEMY_SPAWN_RANGE); // define the range
 
+	GameInfoSingleton::Instance()->setNumberOfEnemies(NUM_ENEMIES);
+
 	for (int i = 0; i < NUM_ENEMIES; i++) {
-		auto enemy = new Enemy(physx::PxVec3(distr(gen), 0, distr(gen)), enemyParticleSystem, this);
+		auto enemy = new Enemy(physx::PxVec3(distr(gen), 0, distr(gen)), enemyParticleSystem, this, i);
 		enemyParticleSystem->addPermanentParticle(enemy);
+
+		GameInfoSingleton::Instance()->setEnemyPos(i, enemy->getPosition());
 	}
-	
 }
 
 void ProjectScene::keyPress(unsigned char key, const physx::PxTransform& camera) {

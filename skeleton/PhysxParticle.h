@@ -6,7 +6,11 @@ class PhysxParticle: public Particle
 {
 public:
 
-	PhysxParticle(physx::PxVec3 pos = physx::PxVec3(0), physx::PxVec3 vel = physx::PxVec3(0), float mass = 1, float damp = 1);
+	enum PhysxParticleType {
+		SPACESHIP, ENEMY, BULLET, OTHER
+	};
+
+	PhysxParticle(physx::PxVec3 pos = physx::PxVec3(0), physx::PxVec3 vel = physx::PxVec3(0), float mass = 1, float damp = 1, PhysxParticleType type = OTHER);
 	~PhysxParticle();
 
 	void integrate(double t) override;
@@ -31,9 +35,12 @@ public:
 
 	void changeRenderItem(physx::PxShape* shape) override;
 
-	
+	virtual void onCollision(PhysxParticle* actorCollided) {};
+
+	PhysxParticleType getType();
 
 protected:
 	physx::PxRigidDynamic* _body;
+	PhysxParticleType _type;
 };
 

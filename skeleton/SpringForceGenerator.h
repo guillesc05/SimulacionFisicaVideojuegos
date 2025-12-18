@@ -16,6 +16,8 @@ public:
 	void changeGlobalK(double newK);
 	double getK();
 
+	void clearAllConnections();
+
 protected:
 	std::unordered_map<Particle*, std::vector<Particle*>> _connections;
 

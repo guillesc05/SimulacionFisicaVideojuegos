@@ -4,6 +4,8 @@
 #include "PhysxParticle.h"
 #include "ParticleSystem.h"
 #include "CustomParticle.h"
+
+#include <vector>
 class Scene;
 class Spaceship: public PhysxParticle
 {
@@ -34,8 +36,10 @@ private:
 	bool pressingShoot = false;
 	void updateCamera();
 	void shoot();
+
+	std::vector<CustomParticle*> _enemyIndicators;
 public:
-	Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, ParticleSystem<CustomParticle>* bulletParticleSystem ,Scene* scene);
+	Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, ParticleSystem<CustomParticle>* bulletParticleSystem ,Scene* scene, int numberOfEnemies);
 	void keyPressed(double t);
 	void update(double t) override;
 

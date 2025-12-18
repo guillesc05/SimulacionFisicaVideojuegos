@@ -270,7 +270,7 @@
     <ClCompile Include="ParticleGenerators\UniformParticleGenerator.cpp" />
     <ClCompile Include="PhysicsUtils.cpp" />
     <ClCompile Include="PhysxParticle.cpp" />
-    <ClCompile Include="PlayerInfoSingleton.cpp" />
+    <ClCompile Include="GameInfoSingleton.cpp" />
     <ClCompile Include="ProjectScene.cpp" />
     <ClCompile Include="RenderUtils.cpp" />
     <ClCompile Include="Render\Camera.cpp" />
@@ -307,7 +307,7 @@
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PhysicsUtils.h" />
     <ClInclude Include="PhysxParticle.h" />
-    <ClInclude Include="PlayerInfoSingleton.h" />
+    <ClInclude Include="GameInfoSingleton.h" />
     <ClInclude Include="ProjectScene.h" />
     <ClInclude Include="RenderUtils.hpp" />
     <ClInclude Include="Render\Camera.h" />

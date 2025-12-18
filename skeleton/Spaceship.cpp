@@ -8,9 +8,9 @@
 #include "PhysicsUtils.h"
 #include "SpringForceGenerator.h"
 
-#include "PlayerInfoSingleton.h"
+#include "GameInfoSingleton.h"
 
-Spaceship::Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, ParticleSystem<CustomParticle>* bulletParticleSystem, Scene* s): PhysxParticle(pos, physx::PxVec3(0), SHIP_MASS, SHIP_DAMP), _engineParticles(engineParticle),
+Spaceship::Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, ParticleSystem<CustomParticle>* bulletParticleSystem, Scene* s, int numEnemies): PhysxParticle(pos, physx::PxVec3(0), SHIP_MASS, SHIP_DAMP, PhysxParticle::SPACESHIP), _engineParticles(engineParticle),
 _scene(s), _bulletPSystem(bulletParticleSystem)
 {
 	changeRenderItem(CreateShape(physx::PxBoxGeometry(2.0f,2.0f, 2.0f)));
@@ -29,6 +29,14 @@ _scene(s), _bulletPSystem(bulletParticleSystem)
 	SpringForceGenerator* springFG = new SpringForceGenerator(10000, (getPosition() - _cannonParticle->getPosition()).magnitude());
 	springFG->connectParticles(_cannonParticle, this);
 	muelleSystem->addForceGenerator(springFG);
+
+	//indicadores de enemigos
+	_enemyIndicators = std::vector<CustomParticle*>(numEnemies);
+	for (int i = 0; i < numEnemies; i++) {
+		_enemyIndicators[i] = new CustomParticle();
+		_enemyIndicators[i]->changeRenderItem(CreateShape(physx::PxSphereGeometry(0.5)));
+		_enemyIndicators[i]->changeColor(physx::PxVec4(1, 0, 0, 1));
+	}
 }
 
 void Spaceship::update(double t) {
@@ -53,7 +61,15 @@ void Spaceship::update(double t) {
 
 
 	//actualizar singleton con posicion del playerr
-	PlayerInfoSingleton::Instance()->setPlayerPos(getPosition());
+	GameInfoSingleton::Instance()->setPlayerPos(getPosition());
+
+	//pillar info de los enemigos
+	auto enemiesPos = GameInfoSingleton::Instance()->getEnemiesPos();
+	for (int i = 0; i < enemiesPos.size(); i++) {
+		auto dir = (enemiesPos[i] - getPosition()).getNormalized();
+
+		_enemyIndicators[i]->setPosition(getPosition() + dir * 5);
+	}
 }
 
 void Spaceship::updateCamera() {
@@ -88,20 +104,20 @@ void Spaceship::shoot() {
 
 void Spaceship::keyPressed(double t) {
 
-	if (KeyboardState::Instance()->getKeyState('u')) {
+	if (KeyboardState::Instance()->getKeyState('w')) {
 		addForce(getRotationDirection() * IMPULSE_FORCE_PER_SECOND * t);
 		_engineParticles->setActive(true);
 	}
 	else _engineParticles->setActive(false);
 
-	if (KeyboardState::Instance()->getKeyState('j')) {
+	if (KeyboardState::Instance()->getKeyState('s')) {
 		addForce(getRotationDirection() * -IMPULSE_FORCE_PER_SECOND*t);
 	}
 
-	if (KeyboardState::Instance()->getKeyState('h')) {
+	if (KeyboardState::Instance()->getKeyState('a')) {
 		addRotation(physx::PxVec3(0, ROTATION_VELOCITY, 0)*t);
 	}
-	else if (KeyboardState::Instance()->getKeyState('k')) {
+	else if (KeyboardState::Instance()->getKeyState('d')) {
 		addRotation(physx::PxVec3(0, -ROTATION_VELOCITY, 0)*t);
 	}
 	else {

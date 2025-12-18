@@ -6,9 +6,10 @@
 #include "OperationUtils.h"
 
 
-PhysxParticle::PhysxParticle(physx::PxVec3 pos, physx::PxVec3 vel, float mass, float damp): Particle(){
+PhysxParticle::PhysxParticle(physx::PxVec3 pos, physx::PxVec3 vel, float mass, float damp, PhysxParticleType type): Particle(), _type(type){
 
 	_body = CreateDynamic(physx::PxTransform(pos));
+	_body->userData = this;
 	_body->setLinearDamping(damp);
 
 	renderItem = new RenderItem(CreateShape(physx::PxSphereGeometry(2.0f)), _body, Vector4(1, 1, 1, 1));
@@ -82,4 +83,8 @@ void PhysxParticle::changeRenderItem(physx::PxShape* shape) {
 	DeregisterRenderItem(prevRI);
 
 	physx::PxRigidBodyExt::setMassAndUpdateInertia(*_body, prevMass);
+}
+
+PhysxParticle::PhysxParticleType PhysxParticle::getType() {
+	return _type;
 }

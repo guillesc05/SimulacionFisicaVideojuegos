@@ -44,3 +44,8 @@ void SpringForceGenerator::applyForce(Particle* p) {
 		p->addForce(force);
 	}
 }
+
+void SpringForceGenerator::clearAllConnections() {
+	_connections.clear();
+	staticParticles.clear();
+}
