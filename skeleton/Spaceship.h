@@ -26,6 +26,8 @@ private:
 	static constexpr double CANNON_MASS = 30;
 	static constexpr double BACKLASH_MAGNITUDE = 50000;
 
+	static constexpr double MAX_CANNON_DISTANCE = 7;
+
 	CustomParticle* _cannonParticle;
 
 	bool pressingY = false;

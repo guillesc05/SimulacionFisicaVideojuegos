@@ -26,7 +26,7 @@ _scene(s), _bulletPSystem(bulletParticleSystem)
 	s->pushUpdateableObject(muelleSystem);
 	muelleSystem->addPermanentParticle(this);
 	muelleSystem->addPermanentParticle(_cannonParticle);
-	SpringForceGenerator* springFG = new SpringForceGenerator(30000, (getPosition() - _cannonParticle->getPosition()).magnitude());
+	SpringForceGenerator* springFG = new SpringForceGenerator(10000, (getPosition() - _cannonParticle->getPosition()).magnitude());
 	springFG->connectParticles(_cannonParticle, this);
 	muelleSystem->addForceGenerator(springFG);
 }
@@ -39,8 +39,15 @@ void Spaceship::update(double t) {
 	_engineParticles->setBasePosition(getPosition());
 	_engineParticles->setBaseDirection(-getRotationDirection());
 
+	//--We clamp the cannon distance from the spaceship so it doesnt break
+	auto cannonDir = (getPosition() - _cannonParticle->getPosition()).getNormalized();
+	auto cannonDistanceMag = (getPosition() - _cannonParticle->getPosition()).magnitude();
+	if (cannonDistanceMag > MAX_CANNON_DISTANCE) cannonDistanceMag = MAX_CANNON_DISTANCE;
+	_cannonParticle->setPosition(getPosition() + cannonDir * cannonDistanceMag);
+
 	//--move cannon to the rotation
 	auto distanceMag = (getPosition() - _cannonParticle->getPosition()).magnitude();
+
 
 	_cannonParticle->setPosition(getPosition() + getRotationDirection() * distanceMag);
 
