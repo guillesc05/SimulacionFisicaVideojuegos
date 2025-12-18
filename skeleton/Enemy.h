@@ -17,7 +17,7 @@ private:
 	static constexpr float ENEMY_DAMPING = 1;
 	static constexpr float ENEMY_FORCE_APPLY = 10000;
 
-	static constexpr int NUM_PARTICLE = 100;
+	static constexpr int NUM_PARTICLE = 30;
 	static constexpr float PARTICLE_DISTANCE= 10;
 
 	bool isDead = false;

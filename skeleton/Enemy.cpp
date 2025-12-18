@@ -21,7 +21,7 @@ Enemy::Enemy(physx::PxVec3 pos, ParticleSystem<CustomParticle>* enemyParticleSys
 		physx::PxVec3 position(sin(currentAngle * std::_Pi_val / 180.), 0, cos(currentAngle * std::_Pi_val / 180.)); position *= PARTICLE_DISTANCE;
 		position += getPosition();
 
-		auto particle = new CustomParticle(position);
+		auto particle = new CustomParticle(position, physx::PxVec3(0), 0.5, 0.9);
 		particle->changeRenderItem(CreateShape(physx::PxBoxGeometry(1, 1, 1)));
 		particle->changeColor(physx::PxVec4(0, 1, 0, .1));
 		_enemyParticleSystem->addPermanentParticle(particle);
