@@ -8,7 +8,7 @@
 #include "GameInfoSingleton.h"
 #include "ExplosionForceGenerator.h"
 
-Enemy::Enemy(physx::PxVec3 pos, ParticleSystem<CustomParticle>* enemyParticleSystem, Scene* scene, int i) : PhysxParticle(pos, physx::PxVec3(0), ENEMY_MASS, ENEMY_DAMPING, PhysxParticle::ENEMY), _enemyParticleSystem(enemyParticleSystem), index(i) {
+Enemy::Enemy(physx::PxVec3 pos, ParticleSystem<CustomParticle>* enemyParticleSystem, Scene* scene, int i) : PhysxParticle(pos, physx::PxVec3(0), ENEMY_MASS, ENEMY_DAMPING, PhysxParticle::ENEMY_ALIVE), _enemyParticleSystem(enemyParticleSystem), index(i) {
 	changeRenderItem(CreateShape(physx::PxSphereGeometry(4)));
 	changeColor(physx::PxVec4(1,0,1,1));
 
@@ -53,4 +53,7 @@ void Enemy::killEnemy() {
 	_enemyParticleSystem->addForceGenerator(fG);
 
 	_springFG->clearAllConnections();
+
+	GameInfoSingleton::Instance()->enemyKilled(index);
+	_type = ENEMY_DEAD;
 }

@@ -7,7 +7,7 @@ class PhysxParticle: public Particle
 public:
 
 	enum PhysxParticleType {
-		SPACESHIP, ENEMY, BULLET, OTHER
+		SPACESHIP, ENEMY_ALIVE, ENEMY_DEAD, BULLET, OTHER
 	};
 
 	PhysxParticle(physx::PxVec3 pos = physx::PxVec3(0), physx::PxVec3 vel = physx::PxVec3(0), float mass = 1, float damp = 1, PhysxParticleType type = OTHER);

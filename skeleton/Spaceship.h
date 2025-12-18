@@ -38,10 +38,17 @@ private:
 	void shoot();
 
 	std::vector<CustomParticle*> _enemyIndicators;
+
+	bool isDead = false;
 public:
 	Spaceship(physx::PxVec3 pos, GaussianParticleGenerator* engineParticle, ParticleSystem<CustomParticle>* bulletParticleSystem ,Scene* scene, int numberOfEnemies);
 	void keyPressed(double t);
 	void update(double t) override;
 
+	void onCollision(PhysxParticle* other) override;
+
+	void enemyKilled(int i);
+
+	void kill();
 };
 

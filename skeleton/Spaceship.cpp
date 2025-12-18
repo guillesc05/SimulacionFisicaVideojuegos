@@ -39,6 +39,12 @@ _scene(s), _bulletPSystem(bulletParticleSystem)
 	}
 }
 
+void Spaceship::onCollision(PhysxParticle* other) {
+	if (other->getType() == ENEMY_ALIVE && !isDead) {
+		kill();
+	}
+}
+
 void Spaceship::update(double t) {
 	updateCamera();
 	keyPressed(t);
@@ -90,6 +96,10 @@ void Spaceship::updateCamera() {
 	
 }
 
+void Spaceship::enemyKilled(int i) {
+	_enemyIndicators[i]->changeColor(physx::PxVec4(0, 0, 0, 0));
+}
+
 void Spaceship::shoot() {
 	physx::PxVec3 dir;
 	if (cameraOnTop) dir = getRotationDirection();
@@ -103,6 +113,16 @@ void Spaceship::shoot() {
 }
 
 void Spaceship::keyPressed(double t) {
+	//se puede cambiar de camara aunque muerto
+	if (!KeyboardState::Instance()->getKeyState('y')) {
+		pressingY = false;
+	}
+	if (KeyboardState::Instance()->getKeyState('y') && !pressingY) {
+		pressingY = true;
+		cameraOnTop = !cameraOnTop;
+	}
+
+	if (isDead) return;
 
 	if (KeyboardState::Instance()->getKeyState('w')) {
 		addForce(getRotationDirection() * IMPULSE_FORCE_PER_SECOND * t);
@@ -124,13 +144,7 @@ void Spaceship::keyPressed(double t) {
 		addRotation(physx::PxVec3(0, 0, 0));
 	}
 
-	if (!KeyboardState::Instance()->getKeyState('y')) {
-		pressingY = false;
-	}
-	if(KeyboardState::Instance()->getKeyState('y') && !pressingY) {
-		pressingY = true;
-		cameraOnTop = !cameraOnTop;
-	}
+	
 	if (!KeyboardState::Instance()->getKeyState(' ')) {
 		pressingShoot = false;
 	}
@@ -140,4 +154,11 @@ void Spaceship::keyPressed(double t) {
 		shoot();
 	}
 
+}
+
+void Spaceship::kill() {
+	isDead = true;
+	changeColor(physx::PxVec4(0.5, 0, 0, 1));
+
+	GameInfoSingleton::Instance()->playerKilled();
 }

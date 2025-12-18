@@ -2,6 +2,7 @@
 #include <PxPhysicsAPI.h>
 #include <vector>
 
+class Spaceship;
 class GameInfoSingleton
 {
 public:
@@ -15,6 +16,11 @@ public:
 	void setEnemyPos(int index, physx::PxVec3 pos);
 	void setPlayerPos(physx::PxVec3 p);
 
+	void enemyKilled(int index);
+	void playerKilled();
+
+	void registerPlayer(Spaceship* p);
+
 	void setNumberOfEnemies(int num);
 private:
 	GameInfoSingleton();
@@ -23,5 +29,9 @@ private:
 	physx::PxVec3 _playerPosition;
 
 	std::vector<physx::PxVec3> _enemyPositions;
+
+	int currentEnemies = 0;
+
+	Spaceship* _player;
 };
 

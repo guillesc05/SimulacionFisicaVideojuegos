@@ -49,6 +49,8 @@ void ProjectScene::start() {
 	_spaceShip = new Spaceship(physx::PxVec3(0),engineParticles, bulletParticleSystem ,this, NUM_ENEMIES);
 	_spaceShip->setDamping(0.5);
 
+	GameInfoSingleton::Instance()->registerPlayer(_spaceShip);
+
 	//--ENEMIES
 	ParticleSystem<CustomParticle>* enemyParticleSystem = new ParticleSystem<CustomParticle>(1);
 	updateableObjects.push_back(enemyParticleSystem);
