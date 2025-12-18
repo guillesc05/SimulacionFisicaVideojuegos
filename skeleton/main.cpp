@@ -89,7 +89,7 @@ void initPhysics(bool interactive)
 	RegisterRenderItem(zAxis);
 
 	//CREAR ESCENA
-	currentScene = new Scene2();
+	currentScene = new ProjectScene();
 	currentScene->start();
 }
 
